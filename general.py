@@ -39,9 +39,24 @@ def cleanData(asset,zb):
 
 
 #载入数据
-# mom=pd.read_csv('berra.csv')
+mom=pd.read_csv('berra.csv')
+mom=mom.copy()
+asset=mom[['date','nl_size']]
+pd.DataFrame(asset).columns=['date','asset']
+
+
+jtf=pd.read_csv('syl.csv')
+jtf=jtf.copy()
+pd.DataFrame(jtf).columns=['date','syl']
+
+
+zb=jtf.copy()
+zb['syl']=zb['syl']-zb['syl'].shift(-1)
+pdatas=cleanData(asset,zb)
+#数据处理块
+# mom=pd.read_csv('hs300.csv')
 # mom=mom.copy()
-# asset=mom[['date','momentum']]
+# asset=mom[['date','hs300']]
 # pd.DataFrame(asset).columns=['date','asset']
 #
 #
@@ -51,22 +66,8 @@ def cleanData(asset,zb):
 #
 # zb=jtf.copy()
 # pdatas=cleanData(asset,zb)
-#数据处理块
-mom=pd.read_csv('hs300.csv')
-mom=mom.copy()
-asset=mom[['date','hs300']]
-pd.DataFrame(asset).columns=['date','asset']
 
-
-jtf=pd.read_csv('jtf.csv')
-jtf=jtf.copy()
-pd.DataFrame(jtf).columns=['date','zb']
-
-zb=jtf.copy()
-pdatas=cleanData(asset,zb)
-
-
-
+#空值数据处理-----季～天
 for i in range(len(pdatas.index)):
     if (pd.isna(pdatas.zb[i-1])==False)&(pd.isna(pdatas.zb[i])==True):
         # pdatas.flag[i] = 1
@@ -77,6 +78,32 @@ pdatas=pdatas.dropna(subset=['asset'])
 # print(pdatas)
 pdatas=pdatas[['zb','zb_roll','asset']]
 print(pdatas)
+
+
+#空值数据处理-----周～天
+# for i in range(len(pdatas.index)):
+#     if (pd.isna(pdatas.zb[i-1])==False)&(pd.isna(pdatas.zb[i])==True):
+#         # pdatas.flag[i] = 1
+#         pdatas.zb[i]=pdatas.zb[i-1]
+#     if (pd.isna(pdatas.zb_roll[i - 1]) == False) & (pd.isna(pdatas.zb_roll[i]) == True):
+#         pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
+# pdatas=pdatas.dropna(subset=['asset'])
+# # print(pdatas)
+# pdatas=pdatas[['zb','zb_roll','asset']]
+# print(pdatas)
+
+
+
+#空值数据处理-----周～月
+# for i in range(len(pdatas.index)):
+#     if (pd.isna(pdatas.asset[i])==False):
+#         # pdatas.flag[i] = 1
+#         pdatas.zb[i]=pdatas.zb[i-1]
+#         pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
+# pdatas=pdatas.dropna(subset=['asset'])
+# # print(pdatas)
+# pdatas=pdatas[['zb','zb_roll','asset']]
+# print(pdatas)
 
 def Strategy(pdatas):
     # pdatas = datas.copy();win_long = 12;win_short = 6;lossratio = 999;
@@ -102,7 +129,7 @@ def Strategy(pdatas):
         # 仅多择时策略：仅在出现状态 b 的时候做多资产 C，验证得到的结果称为正向关系显著；
         # 当前出现状态b（b状态：宏观指标下降），做多
         # (pd.isna(pdatas.momentum[i])==False)&
-        if (pdatas.zb[i] <0):
+        if (pdatas.zb[i]>0):
             # &(pdatas.rolling[i]>0)
             pdatas.flag[i] = 1
             pdatas.position[i + 1] = 1
@@ -222,6 +249,7 @@ def performace(transactions, strategy):
     # plt.plot(np.arange(strategy.shape[0]), 1 , 'grey', label='1', linewidth=1)
 
     plt.plot(np.arange(strategy.shape[0]), strategy.zb / 50000 + 1, 'orange', label='zb', linewidth=2)
+    plt.plot(np.arange(strategy.shape[0]), strategy.asset, 'blue', label='asset', linewidth=2)
 
     # plt.plot(np.arange(strategy.shape[0]), strategy.jtf_roll/50000+1 , 'blue', label='jtf_roll', linewidth=2)
     lim = [1] * 120
