@@ -5,7 +5,7 @@ import matplotlib as plt
 import numpy as np
 import datetime as dt
 from matplotlib import pyplot as plt
-
+# import MySQLdb
 
 #数据处理块
 
@@ -21,7 +21,9 @@ def cleanData(asset,zb):
     # jtf["jtf"]=jtf["jtf"].astype('float64')
 
     zb['date']=pd.to_datetime(zb['date'])
+                              # ,format='%y-%b')
     # jtf.set_index("date", inplace=True)
+    print(zb)
 
     zb.set_index(zb['date'],inplace=True)
     zb['zb_roll']=zb['zb'].rolling(4,min_periods=4,axis=0).mean()
@@ -34,25 +36,29 @@ def cleanData(asset,zb):
 # print(jtf)
     pdatas=pd.concat([zb,asset],axis=1)
     pd.DataFrame(pdatas).columns=['zb','zb_roll','asset']
-    # print(pdatas)
+    print(pdatas)
     return pdatas
 
 
 #载入数据
 mom=pd.read_csv('berra.csv')
 mom=mom.copy()
-asset=mom[['date','nl_size']]
+asset=mom[['date','momentum']]
 pd.DataFrame(asset).columns=['date','asset']
 
 
-jtf=pd.read_csv('syl.csv')
+jtf=pd.read_csv('jtf.csv')
 jtf=jtf.copy()
-pd.DataFrame(jtf).columns=['date','syl']
+
+zb=jtf[['date','jtf']]
+pd.DataFrame(zb).columns=['date','zb']
+zb['zb'] = zb['zb'] - zb['zb'].shift(-1)
 
 
-zb=jtf.copy()
-zb['syl']=zb['syl']-zb['syl'].shift(-1)
 pdatas=cleanData(asset,zb)
+# zb=jtf.copy()
+# zb['syl']=zb['syl']-zb['syl'].shift(-1)
+# pdatas=cleanData(asset,zb)
 #数据处理块
 # mom=pd.read_csv('hs300.csv')
 # mom=mom.copy()
@@ -67,20 +73,18 @@ pdatas=cleanData(asset,zb)
 # zb=jtf.copy()
 # pdatas=cleanData(asset,zb)
 
-#空值数据处理-----季～天
-for i in range(len(pdatas.index)):
-    if (pd.isna(pdatas.zb[i-1])==False)&(pd.isna(pdatas.zb[i])==True):
-        # pdatas.flag[i] = 1
-        pdatas.zb[i]=pdatas.zb[i-1]
-    if (pd.isna(pdatas.zb_roll[i - 1]) == False) & (pd.isna(pdatas.zb_roll[i]) == True):
-        pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
-pdatas=pdatas.dropna(subset=['asset'])
+#空值数据处理-----季～天 改为0
+# for i in range(len(pdatas.index)):
+#     if pd.isna(pdatas.zb[i])==True:
+#         # pdatas.flag[i] = 1
+#         pdatas.zb[i]=0
+#
+# pdatas=pdatas.dropna(subset=['asset'])
+# # print(pdatas)
+# pdatas=pdatas[['zb','zb_roll','asset']]
 # print(pdatas)
-pdatas=pdatas[['zb','zb_roll','asset']]
-print(pdatas)
 
-
-#空值数据处理-----周～天
+# #空值数据处理-----季～天
 # for i in range(len(pdatas.index)):
 #     if (pd.isna(pdatas.zb[i-1])==False)&(pd.isna(pdatas.zb[i])==True):
 #         # pdatas.flag[i] = 1
@@ -91,6 +95,19 @@ print(pdatas)
 # # print(pdatas)
 # pdatas=pdatas[['zb','zb_roll','asset']]
 # print(pdatas)
+
+
+# 空值数据处理-----周～天
+for i in range(len(pdatas.index)):
+    if (pd.isna(pdatas.zb[i-1])==False)&(pd.isna(pdatas.zb[i])==True):
+        # pdatas.flag[i] = 1
+        pdatas.zb[i]=pdatas.zb[i-1]
+    if (pd.isna(pdatas.zb_roll[i - 1]) == False) & (pd.isna(pdatas.zb_roll[i]) == True):
+        pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
+pdatas=pdatas.dropna(subset=['asset'])
+# print(pdatas)
+pdatas=pdatas[['zb','zb_roll','asset']]
+print(pdatas)
 
 
 
@@ -129,15 +146,26 @@ def Strategy(pdatas):
         # 仅多择时策略：仅在出现状态 b 的时候做多资产 C，验证得到的结果称为正向关系显著；
         # 当前出现状态b（b状态：宏观指标下降），做多
         # (pd.isna(pdatas.momentum[i])==False)&
-        if (pdatas.zb[i]>0):
+        if (pdatas.zb[i]<0):
             # &(pdatas.rolling[i]>0)
             pdatas.flag[i] = 1
-            pdatas.position[i + 1] = 1
+            pdatas.position[i+1] = 1
             # pdatas 是一个Dataframe 有5列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag
 
             date_in = pdatas.index[i]
             price_in = pdatas.asset[i]
             pricein.append([date_in, price_in])
+        # if (pdatas.zb[i] >=0):
+        #     # &(pdatas.rolling[i]>0)
+        #     pdatas.flag[i] = -1
+        #     pdatas.position[i+1] = 0
+        #     # pdatas 是一个Dataframe 有5列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag
+        #
+        #     date_out = pdatas.index[i]
+        #     price_out = pdatas.asset[i]
+        #     priceout.append([date_out, price_out])
+
+        
         # if (pdatas.jtf[i] > 0):
         #     # &(pdatas.rolling[i]>0)
         #     pdatas.flag[i] = -1
@@ -161,7 +189,7 @@ def Strategy(pdatas):
     #             pdatas.loc[i, 'flag'] = -1
     #             pdatas.loc[i + 1, 'position'] = 0
     #
-    #             priceout.append([pdatas.DateTime[i], pdatas.loc[i, 'CLOSE']])
+                # priceout.append([pdatas.DateTime[i], pdatas.loc[i, 'CLOSE']])
     #
     #         # 其他情况，保持之前仓位不变
     # else:
@@ -197,7 +225,7 @@ def Strategy(pdatas):
     pdatas = pd.concat([pdatas, df], axis=1)
     pdatas.set_index(pdatas['da'], inplace=True)
 
-    print(pdatas)
+    pdatas.to_csv('result.csv')
 
     stats, result_peryear = performace(transactions, pdatas)
 
@@ -249,7 +277,7 @@ def performace(transactions, strategy):
     # plt.plot(np.arange(strategy.shape[0]), 1 , 'grey', label='1', linewidth=1)
 
     plt.plot(np.arange(strategy.shape[0]), strategy.zb / 50000 + 1, 'orange', label='zb', linewidth=2)
-    plt.plot(np.arange(strategy.shape[0]), strategy.asset, 'blue', label='asset', linewidth=2)
+    # plt.plot(np.arange(strategy.shape[0]), strategy.asset, 'blue', label='asset', linewidth=2)
 
     # plt.plot(np.arange(strategy.shape[0]), strategy.jtf_roll/50000+1 , 'blue', label='jtf_roll', linewidth=2)
     lim = [1] * 120
@@ -267,7 +295,7 @@ def performace(transactions, strategy):
     print('夏普比为:', round(Sharp, 2))
     print('年化收益率为:{}%'.format(round(rety * 100, 2)))
     print('benchmark年化收益率为:{}%'.format(round(bench_rety * 100, 2)))
-    # print('胜率为：{}%'.format(round(VictoryRatio * 100, 2)))
+    print('胜率为：{}%'.format(round(VictoryRatio * 100, 2)))
     print('最大回撤率为：{}%'.format(round(MDD * 100, 2)))
     # print('单次最大亏损为:{}%'.format(round(-maxloss * 100, 2)))
     print('月均交易次数为：{}(买卖合计)'.format(round(strategy.flag.abs().sum() / strategy.shape[0] * 20, 2)))
@@ -280,6 +308,7 @@ def performace(transactions, strategy):
               'num': round(strategy.flag.abs().sum() / strategy.shape[0], 1)}
 
     result = pd.DataFrame.from_dict(result, orient='index').T
+
 
     return result, result_peryear
 
