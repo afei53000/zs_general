@@ -20,8 +20,7 @@ def cleanData(asset,zb):
     # jtf["date"]=jtf["date"].astype('datetime64')
     # jtf["jtf"]=jtf["jtf"].astype('float64')
 
-    zb['date']=pd.to_datetime(zb['date'])
-                              # ,format='%y-%b')
+    zb['date']=pd.to_datetime(zb['date'],format='%b-%y')
     # jtf.set_index("date", inplace=True)
     print(zb)
 
@@ -47,13 +46,13 @@ asset=mom[['date','momentum']]
 pd.DataFrame(asset).columns=['date','asset']
 
 
-jtf=pd.read_csv('jtf.csv')
+jtf=pd.read_csv('pmi.csv')
 jtf=jtf.copy()
 
-zb=jtf[['date','jtf']]
+zb=jtf[['date','jiyadingdan']]
 pd.DataFrame(zb).columns=['date','zb']
 zb['zb'] = zb['zb'] - zb['zb'].shift(-1)
-
+choice=-1 #positive 买入资产
 
 pdatas=cleanData(asset,zb)
 # zb=jtf.copy()
@@ -98,29 +97,29 @@ pdatas=cleanData(asset,zb)
 
 
 # 空值数据处理-----周～天
-for i in range(len(pdatas.index)):
-    if (pd.isna(pdatas.zb[i-1])==False)&(pd.isna(pdatas.zb[i])==True):
-        # pdatas.flag[i] = 1
-        pdatas.zb[i]=pdatas.zb[i-1]
-    if (pd.isna(pdatas.zb_roll[i - 1]) == False) & (pd.isna(pdatas.zb_roll[i]) == True):
-        pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
-pdatas=pdatas.dropna(subset=['asset'])
-# print(pdatas)
-pdatas=pdatas[['zb','zb_roll','asset']]
-print(pdatas)
-
-
-
-#空值数据处理-----周～月
 # for i in range(len(pdatas.index)):
-#     if (pd.isna(pdatas.asset[i])==False):
+#     if (pd.isna(pdatas.zb[i-1])==False)&(pd.isna(pdatas.zb[i])==True):
 #         # pdatas.flag[i] = 1
 #         pdatas.zb[i]=pdatas.zb[i-1]
+#     if (pd.isna(pdatas.zb_roll[i - 1]) == False) & (pd.isna(pdatas.zb_roll[i]) == True):
 #         pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
 # pdatas=pdatas.dropna(subset=['asset'])
 # # print(pdatas)
 # pdatas=pdatas[['zb','zb_roll','asset']]
 # print(pdatas)
+
+
+
+#空值数据处理-----周～月
+for i in range(len(pdatas.index)):
+    if (pd.isna(pdatas.asset[i])==False):
+        # pdatas.flag[i] = 1
+        pdatas.zb[i]=pdatas.zb[i-1]
+        pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
+pdatas=pdatas.dropna(subset=['asset'])
+# print(pdatas)
+pdatas=pdatas[['zb','zb_roll','asset']]
+print(pdatas)
 
 def Strategy(pdatas):
     # pdatas = datas.copy();win_long = 12;win_short = 6;lossratio = 999;
@@ -139,31 +138,58 @@ def Strategy(pdatas):
     priceout = []
     price_in = 1
 
+
+
     ########pdatas['rolling']=pdatas.iloc[:,2].rolling(win_short,min_periods=2,axis=0).mean()
+    if choice==1:
 
-    for i in range(0, pdatas.shape[0] - 1):
+        for i in range(0, pdatas.shape[0] - 1):
 
-        # 仅多择时策略：仅在出现状态 b 的时候做多资产 C，验证得到的结果称为正向关系显著；
-        # 当前出现状态b（b状态：宏观指标下降），做多
-        # (pd.isna(pdatas.momentum[i])==False)&
-        if (pdatas.zb[i]<0):
-            # &(pdatas.rolling[i]>0)
-            pdatas.flag[i] = 1
-            pdatas.position[i+1] = 1
-            # pdatas 是一个Dataframe 有5列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag
+            # 仅多择时策略：仅在出现状态 b 的时候做多资产 C，验证得到的结果称为正向关系显著；
+            # 当前出现状态b（b状态：宏观指标下降），做多
+            # (pd.isna(pdatas.momentum[i])==False)&
+            if (pdatas.zb[i]>0):
+                # &(pdatas.rolling[i]>0)
+                pdatas.flag[i] = 1
+                pdatas.position[i+1] = 1
+                # pdatas 是一个Dataframe 有5列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag
 
-            date_in = pdatas.index[i]
-            price_in = pdatas.asset[i]
-            pricein.append([date_in, price_in])
-        # if (pdatas.zb[i] >=0):
-        #     # &(pdatas.rolling[i]>0)
-        #     pdatas.flag[i] = -1
-        #     pdatas.position[i+1] = 0
-        #     # pdatas 是一个Dataframe 有5列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag
-        #
-        #     date_out = pdatas.index[i]
-        #     price_out = pdatas.asset[i]
-        #     priceout.append([date_out, price_out])
+                date_in = pdatas.index[i]
+                price_in = pdatas.asset[i]
+                pricein.append([date_in, price_in])
+            if (pdatas.zb[i] <=0):
+                # &(pdatas.rolling[i]>0)
+                pdatas.flag[i] = -1
+                pdatas.position[i+1] = 0
+                # pdatas 是一个Dataframe 有5列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag
+
+                date_out = pdatas.index[i]
+                price_out = pdatas.asset[i]
+                priceout.append([date_out, price_out])
+    elif choice == -1:
+        for i in range(0, pdatas.shape[0] - 1):
+
+            # 仅多择时策略：仅在出现状态 b 的时候做多资产 C，验证得到的结果称为正向关系显著；
+            # 当前出现状态b（b状态：宏观指标下降），做多
+            # (pd.isna(pdatas.momentum[i])==False)&
+            if (pdatas.zb[i] < 0):
+                # &(pdatas.rolling[i]>0)
+                pdatas.flag[i] = 1
+                pdatas.position[i + 1] = 1
+                # pdatas 是一个Dataframe 有5列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag
+
+                date_in = pdatas.index[i]
+                price_in = pdatas.asset[i]
+                pricein.append([date_in, price_in])
+            if (pdatas.zb[i] >= 0):
+                # &(pdatas.rolling[i]>0)
+                pdatas.flag[i] = -1
+                pdatas.position[i + 1] = 0
+                # pdatas 是一个Dataframe 有5列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag
+
+                date_out = pdatas.index[i]
+                price_out = pdatas.asset[i]
+                priceout.append([date_out, price_out])
 
         
         # if (pdatas.jtf[i] > 0):
@@ -200,6 +226,8 @@ def Strategy(pdatas):
     # p1/p2  是一个有2列的Dataframe  1：时间datebuy 2：买入/卖出价格pricebuy
 
     transactions = pd.concat([p1, p2], axis=1)
+    print( 'the transaction is :')
+    print(transactions)
     # transactions  是一个有2列的Dataframe  1：时间 2：买入和卖出价格
 
     # pdatas = pdatas.loc[max(0, win_long):, :].reset_index(drop=True)
