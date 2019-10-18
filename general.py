@@ -11,50 +11,37 @@ from matplotlib import pyplot as plt
 
 
 def cleanData(asset,zb):
-    asset['date']=pd.to_datetime(asset['date'])
-    asset.set_index(asset['date'],inplace=True)
-    asset=asset['asset']
-    # print(mo)
+    # asset['date']=pd.to_datetime(asset['date'])
+    # asset.set_index(asset['date'],inplace=True)
+    # asset=asset['asset']
 
 
-    # jtf["date"]=jtf["date"].astype('datetime64')
-    # jtf["jtf"]=jtf["jtf"].astype('float64')
 
-    zb['date']=pd.to_datetime(zb['date'],format='%b-%y')
-    # jtf.set_index("date", inplace=True)
-    print(zb)
+    # zb['date']=pd.to_datetime(zb['date'],format='%b-%y')
 
-    zb.set_index(zb['date'],inplace=True)
-    zb['zb_roll']=zb['zb'].rolling(4,min_periods=4,axis=0).mean()
-    zb=zb[['zb','zb_roll']]
-    # print(jtf)
-    # jtf.plot()
-    # plt.show()
-    # jtf.set_index(jtf['date'],inplace=True)
-    # jtf=jtf['jtf']
-# print(jtf)
+    # print(zb)
+
+    # zb.set_index(zb['date'],inplace=True)
+    # zb['zb_roll']=zb['zb'].rolling(4,min_periods=4,axis=0).mean()
+    # zb=zb[['zb','zb_roll']]
+    #
     pdatas=pd.concat([zb,asset],axis=1)
-    pd.DataFrame(pdatas).columns=['zb','zb_roll','asset']
-    print(pdatas)
+    pd.DataFrame(pdatas).columns=['zb','asset']
+    # print(pdatas)
+    pdatas = pdatas[['zb', 'asset']]
+    # 空值数据处理-----周～月
+    for i in range(len(pdatas.index)):
+        if (pd.isna(pdatas.asset[i]) == True)&(pd.isna(pdatas.zb[i])==False):
+            # pdatas.flag[i] = 1
+            pdatas.zb[i] = pdatas.zb[i - 1]
+    pdatas = pdatas.dropna(subset=['asset'])
+    # print(pdatas)
+
+    # print(pdatas)
     return pdatas
 
 
-#载入数据
-mom=pd.read_csv('berra.csv')
-mom=mom.copy()
-asset=mom[['date','momentum']]
-pd.DataFrame(asset).columns=['date','asset']
 
-
-jtf=pd.read_csv('pmi.csv')
-jtf=jtf.copy()
-
-zb=jtf[['date','jiyadingdan']]
-pd.DataFrame(zb).columns=['date','zb']
-zb['zb'] = zb['zb'] - zb['zb'].shift(-1)
-choice=-1 #positive 买入资产
-
-pdatas=cleanData(asset,zb)
 # zb=jtf.copy()
 # zb['syl']=zb['syl']-zb['syl'].shift(-1)
 # pdatas=cleanData(asset,zb)
@@ -111,15 +98,15 @@ pdatas=cleanData(asset,zb)
 
 
 #空值数据处理-----周～月
-for i in range(len(pdatas.index)):
-    if (pd.isna(pdatas.asset[i])==False):
-        # pdatas.flag[i] = 1
-        pdatas.zb[i]=pdatas.zb[i-1]
-        pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
-pdatas=pdatas.dropna(subset=['asset'])
+# for i in range(len(pdatas.index)):
+#     if (pd.isna(pdatas.asset[i])==False):
+#         # pdatas.flag[i] = 1
+#         pdatas.zb[i]=pdatas.zb[i-1]
+#         pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
+# pdatas=pdatas.dropna(subset=['asset'])
+# # print(pdatas)
+# pdatas=pdatas[['zb','zb_roll','asset']]
 # print(pdatas)
-pdatas=pdatas[['zb','zb_roll','asset']]
-print(pdatas)
 
 def Strategy(pdatas):
     # pdatas = datas.copy();win_long = 12;win_short = 6;lossratio = 999;
@@ -191,7 +178,7 @@ def Strategy(pdatas):
                 price_out = pdatas.asset[i]
                 priceout.append([date_out, price_out])
 
-        
+
         # if (pdatas.jtf[i] > 0):
         #     # &(pdatas.rolling[i]>0)
         #     pdatas.flag[i] = -1
@@ -226,8 +213,8 @@ def Strategy(pdatas):
     # p1/p2  是一个有2列的Dataframe  1：时间datebuy 2：买入/卖出价格pricebuy
 
     transactions = pd.concat([p1, p2], axis=1)
-    print( 'the transaction is :')
-    print(transactions)
+    # print( 'the transaction is :')
+    # print(transactions)
     # transactions  是一个有2列的Dataframe  1：时间 2：买入和卖出价格
 
     # pdatas = pdatas.loc[max(0, win_long):, :].reset_index(drop=True)
@@ -238,9 +225,9 @@ def Strategy(pdatas):
     # print(pdatas.position)
     pdatas['nav'] = (1 + pdatas.ret * pdatas.position).cumprod()
     pdatas['benchmark'] = pdatas.asset / pdatas.asset[0]  # 错了
-    print(pdatas['benchmark'])
+    # print(pdatas['benchmark'])
     # pdatas 是一个Dataframe 有8列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag 6.ret 7.nav 8.benchmark
-    print(pdatas.ret, pdatas.position)
+    # print(pdatas.ret, pdatas.position)
 
     df = pd.DataFrame(pdatas.index.strftime('%Y-%m-%d').str.split('-').tolist(),
                       columns=['year', 'month', 'day'], dtype=int)
@@ -294,39 +281,39 @@ def performace(transactions, strategy):
     result_peryear = result_peryear.T
 
     # 作图
-    xtick = np.round(np.linspace(0, strategy.shape[0] - 1, 7), 0).astype(int)
-    xticklabel = strategy.index[xtick].strftime("%y %b")
+    # xtick = np.round(np.linspace(0, strategy.shape[0] - 1, 7), 0).astype(int)
+    # xticklabel = strategy.index[xtick].strftime("%y %b")
 
-    plt.figure(figsize=(9, 4))
-    ax1 = plt.axes()
-    plt.plot(np.arange(strategy.shape[0]), strategy.benchmark, 'black', label='benchmark', linewidth=2)
-    plt.plot(np.arange(strategy.shape[0]), strategy.nav, 'red', label='nav', linewidth=2)
-    # plt.plot(np.arange(strategy.shape[0]), strategy.nav / strategy.benchmark, 'orange', label='RS', linewidth=2)
-    # plt.plot(np.arange(strategy.shape[0]), 1 , 'grey', label='1', linewidth=1)
-
-    plt.plot(np.arange(strategy.shape[0]), strategy.zb / 50000 + 1, 'orange', label='zb', linewidth=2)
-    # plt.plot(np.arange(strategy.shape[0]), strategy.asset, 'blue', label='asset', linewidth=2)
+    # plt.figure(figsize=(9, 4))
+    # ax1 = plt.axes()
+    # plt.plot(np.arange(strategy.shape[0]), strategy.benchmark, 'black', label='benchmark', linewidth=2)
+    # plt.plot(np.arange(strategy.shape[0]), strategy.nav, 'red', label='nav', linewidth=2)
+    # # plt.plot(np.arange(strategy.shape[0]), strategy.nav / strategy.benchmark, 'orange', label='RS', linewidth=2)
+    # # plt.plot(np.arange(strategy.shape[0]), 1 , 'grey', label='1', linewidth=1)
+    #
+    # plt.plot(np.arange(strategy.shape[0]), strategy.zb / 50000 + 1, 'orange', label='zb', linewidth=2)
 
     # plt.plot(np.arange(strategy.shape[0]), strategy.jtf_roll/50000+1 , 'blue', label='jtf_roll', linewidth=2)
-    lim = [1] * 120
-    plt.plot(lim, "r--")
-
-    plt.legend()
-
-    ax1.set_xticks(xtick)
-    ax1.set_xticklabels(xticklabel)
-    plt.savefig("/Users/feitongliu/Desktop/数据/jtf_momentum.png", dpi=100)
-    plt.show()
+    # lim = [1] * 120
+    # plt.plot(lim, "r--")
+    #
+    # plt.legend()
+    #
+    # ax1.set_xticks(xtick)
+    # ax1.set_xticklabels(xticklabel)
+    # plt.savefig("/Users/feitongliu/Desktop/数据/jtf_momentum.png", dpi=100)
+    # plt.show()
 
     maxloss = min(transactions.pricesell / transactions.pricebuy - 1)
-    print('------------------------------')
-    print('夏普比为:', round(Sharp, 2))
-    print('年化收益率为:{}%'.format(round(rety * 100, 2)))
-    print('benchmark年化收益率为:{}%'.format(round(bench_rety * 100, 2)))
-    print('胜率为：{}%'.format(round(VictoryRatio * 100, 2)))
-    print('最大回撤率为：{}%'.format(round(MDD * 100, 2)))
-    # print('单次最大亏损为:{}%'.format(round(-maxloss * 100, 2)))
-    print('月均交易次数为：{}(买卖合计)'.format(round(strategy.flag.abs().sum() / strategy.shape[0] * 20, 2)))
+
+    # print('------------------------------')
+    # print('夏普比为:', round(Sharp, 2))
+    # print('年化收益率为:{}%'.format(round(rety * 100, 2)))
+    # print('benchmark年化收益率为:{}%'.format(round(bench_rety * 100, 2)))
+    # print('胜率为：{}%'.format(round(VictoryRatio * 100, 2)))
+    # print('最大回撤率为：{}%'.format(round(MDD * 100, 2)))
+    # # print('单次最大亏损为:{}%'.format(round(-maxloss * 100, 2)))
+    # print('月均交易次数为：{}(买卖合计)'.format(round(strategy.flag.abs().sum() / strategy.shape[0] * 20, 2)))
 
     result = {'Sharp': Sharp,
               'RetYearly': rety,
@@ -335,10 +322,51 @@ def performace(transactions, strategy):
               'maxlossOnce': -maxloss,
               'num': round(strategy.flag.abs().sum() / strategy.shape[0], 1)}
 
-    result = pd.DataFrame.from_dict(result, orient='index').T
+    # result = pd.DataFrame.from_dict(result, orient='index').T
+    # result = pd.DataFrame.from_dict(result, orient='index')
+
+    # print(result)
 
 
     return result, result_peryear
 
 
-Strategy(pdatas)
+choice=1
+zhibiao_result=pd.DataFrame()
+one_hg=[]
+#载入数据
+assets=pd.read_csv('berra.csv')
+assets=assets.copy()
+assets['date']=pd.to_datetime(assets['date'])
+assets.set_index(assets['date'],inplace=True)
+del assets['date']
+
+
+hg_y=pd.read_csv('hg_y.csv')
+hg_y['date']=pd.to_datetime(hg_y['date'])
+hg_y.set_index(hg_y['date'],inplace=True)
+del hg_y['date']
+hg_y=pd.DataFrame(hg_y)
+print(hg_y.iloc[:,1])
+print(assets.iloc[:,1])
+
+# for i in range(0,hg_y.shape[1]-1):
+#     for k in range(0,assets.shape[1]-1):
+for i in range(0, 2):
+    for k in range(0, 2):
+        zhibiao=hg_y.iloc[:,i]
+        asset=assets.iloc[:,k]
+        pdatas=cleanData(asset,zhibiao)
+        result=Strategy(pdatas)[0]
+        # print(result)
+        one_hg.append(result)
+    one_hg = pd.DataFrame(one_hg)
+    # zhibiao_result.append(one_hg)
+    print(one_hg)
+    # one_row=pd.DataFrame(one_hg)
+    # print(one_row)
+#     zhibiao_result.append(one_row)
+# # zhibiao_1=pd.DataFrame(zhibiao_result)
+# # Sharp=zhibiao_1['Sharp']
+# pd.DataFrame(zhibiao_result).to_csv('Sharp.csv')
+# print(zhibiao_result)
