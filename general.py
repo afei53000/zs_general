@@ -347,26 +347,45 @@ hg_y['date']=pd.to_datetime(hg_y['date'])
 hg_y.set_index(hg_y['date'],inplace=True)
 del hg_y['date']
 hg_y=pd.DataFrame(hg_y)
+print(hg_y)
 # print(hg_y.iloc[:,1])
 # print(assets.iloc[:,1])
 
 # for i in range(0,hg_y.shape[1]-1):
 #     for k in range(0,assets.shape[1]-1):
 sharp=pd.DataFrame()
-for i in range(0,hg_y.shape[1]-1):
-    one_hg=[]
-    for k in range(0,assets.shape[1]-1):
-        zhibiao=hg_y.iloc[:,i]
-        asset=assets.iloc[:,k]
-        pdatas=cleanData(asset,zhibiao)
-        result=Strategy(pdatas)[0]
-        # print(result)
-        one_hg.append(result)
-    one_hg = pd.DataFrame(one_hg)
-    # zhibiao_result.append(one_hg)
-    sharp['%s'%i]=one_hg['Sharp']
-    # sharp.append(one_hg['Sharp'])
-# print(one_hg)
+# rety=pd.DataFrame()
+# VictoryRatio=pd.DataFrame()
+# MDD=pd.DataFrame()
+# -maxloss=pd.DataFrame()
+# =pd.DataFrame()
+
+
+# for i in range(84,
+#                hg_y.shape[1]):
+#               # 77):
+#
+#     one_hg=[]
+#     for k in range(0,assets.shape[1]-1):
+#         zhibiao=hg_y.iloc[:,i]
+#         asset=assets.iloc[:,k]
+#         pdatas=cleanData(asset,zhibiao)
+#         result=Strategy(pdatas)[0]
+#         # print(result)
+#         one_hg.append(result)
+#     one_hg = pd.DataFrame(one_hg)
+#     # zhibiao_result.append(one_hg)
+#     sharp['%s'%i]=one_hg['Sharp']
+#     # rety['%s' % i] = one_hg['rety']
+#     # VictoryRatio['%s' % i] = one_hg['VictoryRatio']
+#     # MDD['%s' % i] = one_hg['MDD']
+#     # -maxloss['%s' % i] = one_hg['-maxloss']
+#     # sharp.append(one_hg['Sharp'])
+# # print(one_hg)
+# sharp.to_csv('sharp13.csv')
+
+
+# rety.to_csv('rety5.csv')
 print(sharp)
     # one_row=pd.DataFrame(one_hg)
     # print(one_row)
@@ -375,3 +394,33 @@ print(sharp)
 # # Sharp=zhibiao_1['Sharp']
 # pd.DataFrame(zhibiao_result).to_csv('Sharp.csv')
 # print(zhibiao_result)
+a=pd.read_csv('sharp1.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+b=pd.read_csv('sharp2.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+c=pd.read_csv('sharp3.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+d=pd.read_csv('sharp4.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+e=pd.read_csv('sharp5.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+f=pd.read_csv('sharp6.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+g=pd.read_csv('sharp7.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+h=pd.read_csv('sharp8.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+i=pd.read_csv('sharp9.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+j=pd.read_csv('sharp10.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+k=pd.read_csv('sharp11.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+l=pd.read_csv('sharp12.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+m=pd.read_csv('sharp13.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+
+all= pd.concat([a,b,c,d,e,f,g,h,i,j,k,l,m],axis=1,ignore_index=True)
+all.to_csv('sharpp.csv',index=False) #header=0表示不保留列名，index=False表示不保留行索引，mode='a'表示附加方式写入，文件原有内容不会被清除
+
+# b.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# c.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# d.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# e.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# f.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# g.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# h.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# i.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# j.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# k.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# l.to_csv('sharpp.csv', mode='a', index=True, header=0)
+# m.to_csv('sharpp.csv', mode='a', index=True, header=0)
+
