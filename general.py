@@ -333,7 +333,7 @@ def performace(transactions, strategy):
 
 choice=1
 zhibiao_result=pd.DataFrame()
-one_hg=[]
+
 #载入数据
 assets=pd.read_csv('berra.csv')
 assets=assets.copy()
@@ -347,13 +347,15 @@ hg_y['date']=pd.to_datetime(hg_y['date'])
 hg_y.set_index(hg_y['date'],inplace=True)
 del hg_y['date']
 hg_y=pd.DataFrame(hg_y)
-print(hg_y.iloc[:,1])
-print(assets.iloc[:,1])
+# print(hg_y.iloc[:,1])
+# print(assets.iloc[:,1])
 
 # for i in range(0,hg_y.shape[1]-1):
 #     for k in range(0,assets.shape[1]-1):
-for i in range(0, 2):
-    for k in range(0, 2):
+sharp=pd.DataFrame()
+for i in range(0,hg_y.shape[1]-1):
+    one_hg=[]
+    for k in range(0,assets.shape[1]-1):
         zhibiao=hg_y.iloc[:,i]
         asset=assets.iloc[:,k]
         pdatas=cleanData(asset,zhibiao)
@@ -362,7 +364,10 @@ for i in range(0, 2):
         one_hg.append(result)
     one_hg = pd.DataFrame(one_hg)
     # zhibiao_result.append(one_hg)
-    print(one_hg)
+    sharp['%s'%i]=one_hg['Sharp']
+    # sharp.append(one_hg['Sharp'])
+# print(one_hg)
+print(sharp)
     # one_row=pd.DataFrame(one_hg)
     # print(one_row)
 #     zhibiao_result.append(one_row)
