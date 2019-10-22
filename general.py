@@ -22,20 +22,63 @@ def cleanData(asset,zb):
     # print(zb)
 
     # zb.set_index(zb['date'],inplace=True)
-    # zb['zb_roll']=zb['zb'].rolling(4,min_periods=4,axis=0).mean()
+
+
+    # zb=zb.rolling(1,min_periods=4,axis=0).apply()
     # zb=zb[['zb','zb_roll']]
-    #
+    #(
+    minus=[]
+        # pd.DataFrame()
+
+    for i in range(len(zb.index)):
+        if (pd.isna(zb.iloc[i]) == False):
+            # pdatas.flag[i] = 1
+            k=zb.iloc[i]
+            minus.append(k)
+
+    print(minus)
+    minus=pd.DataFrame(minus)
+    minus = minus - minus.shift(1)
+    f=0
+    for i in range(len(zb.index)):
+        if (pd.isna(zb[i]) == False):
+            # pdatas.flag[i] = 1
+            zb[i]=minus.iloc[f,0]
+            f=f+1
+    zb.index=zb.index+datetime.timedelta(days=26)#
+
+
+
+
+
     pdatas=pd.concat([zb,asset],axis=1)
+    # pdatas=pd.merge(zb,asset,how='outer')
+    # pdatas = zb.join( asset,how='outer')
+
     pd.DataFrame(pdatas).columns=['zb','asset']
-    # print(pdatas)
+    print(pdatas)
     pdatas = pdatas[['zb', 'asset']]
     # 空值数据处理-----周～月
+    zb_dropna= zb.dropna()
+    # print(zb_dropna)
     for i in range(len(pdatas.index)):
-        if (pd.isna(pdatas.asset[i]) == True)&(pd.isna(pdatas.zb[i])==False):
+        pdatas.zb[i] =np.nan
+        if (pd.isna(pdatas.asset[i]) == False)&(pd.isna(pdatas.zb[i])==True):
             # pdatas.flag[i] = 1
-            pdatas.zb[i] = pdatas.zb[i - 1]
+            last_time=np.max(zb_dropna.index[zb_dropna.index<zb_dropna.index[i]])
+            # np.max(last_time)
+            # print(last_time)
+            # print(pdatas.zb[pdatas.index==last_time])
+            last_zb=pd.DataFrame(pdatas.zb[pdatas.index == last_time])
+
+            print(last_zb.zb)
+
+
+
+            # pdatas.zb[i] = float(last_zb.zb)
+                # pdatas[pdatas.index==last_time]
     pdatas = pdatas.dropna(subset=['asset'])
-    # print(pdatas)
+    print(pdatas)
 
     # print(pdatas)
     return pdatas
@@ -342,12 +385,13 @@ assets.set_index(assets['date'],inplace=True)
 del assets['date']
 
 
-hg_y=pd.read_csv('hg_y.csv')
+hg_y=pd.read_csv('hg_yue.csv')
 hg_y['date']=pd.to_datetime(hg_y['date'])
 hg_y.set_index(hg_y['date'],inplace=True)
 del hg_y['date']
 hg_y=pd.DataFrame(hg_y)
 print(hg_y)
+print(assets)
 # print(hg_y.iloc[:,1])
 # print(assets.iloc[:,1])
 
@@ -361,28 +405,32 @@ sharp=pd.DataFrame()
 # =pd.DataFrame()
 
 
-# for i in range(84,
-#                hg_y.shape[1]):
-#               # 77):
-#
-#     one_hg=[]
-#     for k in range(0,assets.shape[1]-1):
-#         zhibiao=hg_y.iloc[:,i]
-#         asset=assets.iloc[:,k]
-#         pdatas=cleanData(asset,zhibiao)
-#         result=Strategy(pdatas)[0]
-#         # print(result)
-#         one_hg.append(result)
-#     one_hg = pd.DataFrame(one_hg)
-#     # zhibiao_result.append(one_hg)
-#     sharp['%s'%i]=one_hg['Sharp']
-#     # rety['%s' % i] = one_hg['rety']
-#     # VictoryRatio['%s' % i] = one_hg['VictoryRatio']
-#     # MDD['%s' % i] = one_hg['MDD']
-#     # -maxloss['%s' % i] = one_hg['-maxloss']
-#     # sharp.append(one_hg['Sharp'])
-# # print(one_hg)
-# sharp.to_csv('sharp13.csv')
+for i in range(0,
+               # hg_y.shape[1]):
+              1):
+
+    one_hg=[]
+    for k in range(0,
+                   # assets.shape[1]):
+        1):
+        zhibiao=hg_y.iloc[:,i]
+        asset=assets.iloc[:,k]
+        print(zhibiao)
+        print(asset)
+        pdatas=cleanData(asset,zhibiao)
+        result=Strategy(pdatas)[0]
+        # print(result)
+        one_hg.append(result)
+    one_hg = pd.DataFrame(one_hg)
+    # zhibiao_result.append(one_hg)
+    sharp['%s'%i]=one_hg['Sharp']
+    # rety['%s' % i] = one_hg['rety']
+    # VictoryRatio['%s' % i] = one_hg['VictoryRatio']
+    # MDD['%s' % i] = one_hg['MDD']
+    # -maxloss['%s' % i] = one_hg['-maxloss']
+    # sharp.append(one_hg['Sharp'])
+# print(one_hg)
+sharp.to_csv('sharp13.csv')
 
 
 # rety.to_csv('rety5.csv')
