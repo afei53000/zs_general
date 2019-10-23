@@ -29,6 +29,7 @@ def cleanData(asset,zb):
     #(
     minus=[]
         # pd.DataFrame()
+    print(zb)
 
     for i in range(len(zb.index)):
         if (pd.isna(zb.iloc[i]) == False):
@@ -36,11 +37,12 @@ def cleanData(asset,zb):
             k=zb.iloc[i]
             minus.append(k)
 
-    print(minus)
+    # print(minus)
     minus=pd.DataFrame(minus)
     minus = minus - minus.shift(1)
     f=0
-    for i in range(len(zb.index)):
+    zb[0] = 0
+    for i in range(1,len(zb.index)):
         if (pd.isna(zb[i]) == False):
             # pdatas.flag[i] = 1
             zb[i]=minus.iloc[f,0]
@@ -56,27 +58,27 @@ def cleanData(asset,zb):
     # pdatas = zb.join( asset,how='outer')
 
     pd.DataFrame(pdatas).columns=['zb','asset']
-    print(pdatas)
+    # print(pdatas)
     pdatas = pdatas[['zb', 'asset']]
     # 空值数据处理-----周～月
     zb_dropna= zb.dropna()
     # print(zb_dropna)
     for i in range(len(pdatas.index)):
-        pdatas.zb[i] =np.nan
+        # pdatas.zb[i] =np.nan
         if (pd.isna(pdatas.asset[i]) == False)&(pd.isna(pdatas.zb[i])==True):
             # pdatas.flag[i] = 1
-            last_time=np.max(zb_dropna.index[zb_dropna.index<zb_dropna.index[i]])
+            last_time=np.max(zb_dropna.index[zb_dropna.index<pdatas.index[i]])
             # np.max(last_time)
             # print(last_time)
             # print(pdatas.zb[pdatas.index==last_time])
-            last_zb=pd.DataFrame(pdatas.zb[pdatas.index == last_time])
-
-            print(last_zb.zb)
-
+            last_zb=pdatas[pdatas.index == last_time]
+            if last_zb.empty==False:
 
 
-            # pdatas.zb[i] = float(last_zb.zb)
+                # print(last_zb.iloc[0,0])
+                pdatas.zb[i] =last_zb.iloc[0,0]
                 # pdatas[pdatas.index==last_time]
+            pdatas[pdatas.index == last_time].zb=np.nan
     pdatas = pdatas.dropna(subset=['asset'])
     print(pdatas)
 
@@ -390,8 +392,8 @@ hg_y['date']=pd.to_datetime(hg_y['date'])
 hg_y.set_index(hg_y['date'],inplace=True)
 del hg_y['date']
 hg_y=pd.DataFrame(hg_y)
-print(hg_y)
-print(assets)
+# print(hg_y)
+# print(assets)
 # print(hg_y.iloc[:,1])
 # print(assets.iloc[:,1])
 
@@ -406,8 +408,8 @@ sharp=pd.DataFrame()
 
 
 for i in range(0,
-               # hg_y.shape[1]):
-              1):
+               30):
+              # 1):
 
     one_hg=[]
     for k in range(0,
@@ -415,8 +417,8 @@ for i in range(0,
         1):
         zhibiao=hg_y.iloc[:,i]
         asset=assets.iloc[:,k]
-        print(zhibiao)
-        print(asset)
+        # print(zhibiao)
+        # print(asset)
         pdatas=cleanData(asset,zhibiao)
         result=Strategy(pdatas)[0]
         # print(result)
@@ -442,22 +444,27 @@ print(sharp)
 # # Sharp=zhibiao_1['Sharp']
 # pd.DataFrame(zhibiao_result).to_csv('Sharp.csv')
 # print(zhibiao_result)
-a=pd.read_csv('sharp1.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-b=pd.read_csv('sharp2.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-c=pd.read_csv('sharp3.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-d=pd.read_csv('sharp4.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-e=pd.read_csv('sharp5.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-f=pd.read_csv('sharp6.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-g=pd.read_csv('sharp7.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-h=pd.read_csv('sharp8.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-i=pd.read_csv('sharp9.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-j=pd.read_csv('sharp10.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-k=pd.read_csv('sharp11.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-l=pd.read_csv('sharp12.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-m=pd.read_csv('sharp13.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
 
-all= pd.concat([a,b,c,d,e,f,g,h,i,j,k,l,m],axis=1,ignore_index=True)
-all.to_csv('sharpp.csv',index=False) #header=0表示不保留列名，index=False表示不保留行索引，mode='a'表示附加方式写入，文件原有内容不会被清除
+
+
+# a=pd.read_csv('sharp1.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# b=pd.read_csv('sharp2.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# c=pd.read_csv('sharp3.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# d=pd.read_csv('sharp4.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# e=pd.read_csv('sharp5.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# f=pd.read_csv('sharp6.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# g=pd.read_csv('sharp7.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# h=pd.read_csv('sharp8.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# i=pd.read_csv('sharp9.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# j=pd.read_csv('sharp10.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# k=pd.read_csv('sharp11.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# l=pd.read_csv('sharp12.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# m=pd.read_csv('sharp13.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+#
+# all= pd.concat([a,b,c,d,e,f,g,h,i,j,k,l,m],axis=1,ignore_index=True)
+# all.to_csv('sharpp.csv',index=False) #header=0表示不保留列名，index=False表示不保留行索引，mode='a'表示附加方式写入，文件原有内容不会被清除
+
+
 
 # b.to_csv('sharpp.csv', mode='a', index=True, header=0)
 # c.to_csv('sharpp.csv', mode='a', index=True, header=0)
