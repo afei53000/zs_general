@@ -29,7 +29,7 @@ def cleanData(asset,zb):
     #(
     minus=[]
         # pd.DataFrame()
-    print(zb)
+    # print(zb)
 
     for i in range(len(zb.index)):
         if (pd.isna(zb.iloc[i]) == False):
@@ -80,7 +80,7 @@ def cleanData(asset,zb):
                 # pdatas[pdatas.index==last_time]
             pdatas[pdatas.index == last_time].zb=np.nan
     pdatas = pdatas.dropna(subset=['asset'])
-    print(pdatas)
+    # print(pdatas)
 
     # print(pdatas)
     return pdatas
@@ -303,7 +303,7 @@ def performace(transactions, strategy):
     bench_rety = strategy.benchmark[strategy.shape[0] - 1] ** (N / strategy.shape[0]) - 1
 
     # 夏普比
-    Sharp = (strategy.ret * strategy.position).mean() / (strategy.ret * strategy.position).std() * np.sqrt(N)
+    Sharp = ((strategy.ret * strategy.position).mean()*N-0.026 )/( (strategy.ret * strategy.position).std() * np.sqrt(N))
 
     # 胜率
     VictoryRatio = ((transactions.pricesell - transactions.pricebuy) > 0).mean()
@@ -328,7 +328,7 @@ def performace(transactions, strategy):
     # 作图
     # xtick = np.round(np.linspace(0, strategy.shape[0] - 1, 7), 0).astype(int)
     # xticklabel = strategy.index[xtick].strftime("%y %b")
-
+    #
     # plt.figure(figsize=(9, 4))
     # ax1 = plt.axes()
     # plt.plot(np.arange(strategy.shape[0]), strategy.benchmark, 'black', label='benchmark', linewidth=2)
@@ -337,8 +337,8 @@ def performace(transactions, strategy):
     # # plt.plot(np.arange(strategy.shape[0]), 1 , 'grey', label='1', linewidth=1)
     #
     # plt.plot(np.arange(strategy.shape[0]), strategy.zb / 50000 + 1, 'orange', label='zb', linewidth=2)
-
-    # plt.plot(np.arange(strategy.shape[0]), strategy.jtf_roll/50000+1 , 'blue', label='jtf_roll', linewidth=2)
+    #
+    # # plt.plot(np.arange(strategy.shape[0]), strategy.jtf_roll/50000+1 , 'blue', label='jtf_roll', linewidth=2)
     # lim = [1] * 120
     # plt.plot(lim, "r--")
     #
@@ -405,38 +405,57 @@ sharp=pd.DataFrame()
 # MDD=pd.DataFrame()
 # -maxloss=pd.DataFrame()
 # =pd.DataFrame()
+################################################
+m=0
 
+for m in range(2,9):
+    sharp = pd.DataFrame()
 
-for i in range(0,
-               30):
-              # 1):
+    for i in range(m*10,
+                   # 91):
+                   (m+1)*10):
 
-    one_hg=[]
-    for k in range(0,
-                   # assets.shape[1]):
-        1):
-        zhibiao=hg_y.iloc[:,i]
-        asset=assets.iloc[:,k]
-        # print(zhibiao)
-        # print(asset)
-        pdatas=cleanData(asset,zhibiao)
-        result=Strategy(pdatas)[0]
-        # print(result)
-        one_hg.append(result)
-    one_hg = pd.DataFrame(one_hg)
-    # zhibiao_result.append(one_hg)
-    sharp['%s'%i]=one_hg['Sharp']
-    # rety['%s' % i] = one_hg['rety']
-    # VictoryRatio['%s' % i] = one_hg['VictoryRatio']
-    # MDD['%s' % i] = one_hg['MDD']
-    # -maxloss['%s' % i] = one_hg['-maxloss']
+        one_hg=[]
+
+        for k in range(0,
+                       assets.shape[1]):
+            # 1):
+            zhibiao=hg_y.iloc[:,i]
+            asset=assets.iloc[:,k]
+            # print(zhibiao)
+            # print(asset)
+            pdatas=cleanData(asset,zhibiao)
+            result=Strategy(pdatas)[0]
+            # print(result)
+            one_hg.append(result)
+        one_hg = pd.DataFrame(one_hg)
+        # zhibiao_result.append(one_hg)
+        sharp['%s'%i]=one_hg['Sharp']
+
+    sharp.to_csv('sharp%s.csv'%m)
+    print('sharp%s is caculated'%m)
+    m=m+1
+
+###################################################
+#
+# zhibiao=hg_y['gdp_jr']
+# asset=assets['nl_size']
+# # print(zhibiao)
+# # print(asset)
+# pdatas=cleanData(asset,zhibiao)
+# Strategy(pdatas)
+####################################################
+        # rety['%s' % i] = one_hg['rety']
+        # VictoryRatio['%s' % i] = one_hg['VictoryRatio']
+        # MDD['%s' % i] = one_hg['MDD']
+        # -maxloss['%s' % i] = one_hg['-maxloss']
     # sharp.append(one_hg['Sharp'])
 # print(one_hg)
-sharp.to_csv('sharp13.csv')
+
 
 
 # rety.to_csv('rety5.csv')
-print(sharp)
+# print(sharp)
     # one_row=pd.DataFrame(one_hg)
     # print(one_row)
 #     zhibiao_result.append(one_row)
@@ -446,23 +465,23 @@ print(sharp)
 # print(zhibiao_result)
 
 
-
-# a=pd.read_csv('sharp1.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# b=pd.read_csv('sharp2.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# c=pd.read_csv('sharp3.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# d=pd.read_csv('sharp4.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# e=pd.read_csv('sharp5.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# f=pd.read_csv('sharp6.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# g=pd.read_csv('sharp7.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# h=pd.read_csv('sharp8.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+z=pd.read_csv('sharp0.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+a=pd.read_csv('sharp1.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+b=pd.read_csv('sharp2.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+c=pd.read_csv('sharp3.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+d=pd.read_csv('sharp4.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+e=pd.read_csv('sharp5.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+f=pd.read_csv('sharp6.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+g=pd.read_csv('sharp7.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+h=pd.read_csv('sharp8.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
 # i=pd.read_csv('sharp9.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
 # j=pd.read_csv('sharp10.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
 # k=pd.read_csv('sharp11.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
 # l=pd.read_csv('sharp12.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
 # m=pd.read_csv('sharp13.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-#
-# all= pd.concat([a,b,c,d,e,f,g,h,i,j,k,l,m],axis=1,ignore_index=True)
-# all.to_csv('sharpp.csv',index=False) #header=0表示不保留列名，index=False表示不保留行索引，mode='a'表示附加方式写入，文件原有内容不会被清除
+
+all= pd.concat([z,a,b,c,d,e,f,g,h],axis=1,ignore_index=True)
+all.to_csv('sharpp.csv',index=False) #header=0表示不保留列名，index=False表示不保留行索引，mode='a'表示附加方式写入，文件原有内容不会被清除
 
 
 
