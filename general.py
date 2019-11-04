@@ -362,6 +362,7 @@ def performace(transactions, strategy):
 
     result = {'Sharp': Sharp,
               'RetYearly': rety,
+              'bench_rety': bench_rety,
               'WinRate': VictoryRatio,
               'MDD': MDD,
               'maxlossOnce': -maxloss,
@@ -408,11 +409,13 @@ sharp=pd.DataFrame()
 ################################################
 m=0
 
-for m in range(2,9):
+for m in range(0,1):
     sharp = pd.DataFrame()
     rety = pd.DataFrame()
     bench_rety = pd.DataFrame()
     MDD = pd.DataFrame()
+    VictoryRatio = pd.DataFrame()
+
 
 
     m = m + 1
@@ -439,6 +442,9 @@ for m in range(2,9):
         bench_rety['%s' % i] = one_hg['bench_rety']
         rety['%s' % i] = one_hg['RetYearly']
         MDD['%s' % i] = one_hg['MDD']
+        VictoryRatio['%s' % i] = one_hg['WinRate']
+
+    VictoryRatio.to_csv('VictoryRatio%s.csv' % m)
 
     sharp.to_csv('sharp%s.csv'%m)
     bench_rety.to_csv('bench_rety%s.csv'%m)
