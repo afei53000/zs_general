@@ -478,10 +478,24 @@ for a in range(0,9):
     w = pd.read_csv('VictoryRatio%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
     VictoryRatio_all.append(w)
 
-frames = [bench_rety_all, rety_all, MDD_all,sharp_all, VictoryRatio_all]
-frames=pd.concat(frames)
-frames.to_csv('final.csv')
-
+# print(bench_rety_all)
+bench_rety_all=pd.concat(bench_rety_all,axis=1,ignore_index=True)
+# print(bench_rety_all)
+rety_all=pd.concat(rety_all,axis=1,ignore_index=True)
+MDD_all=pd.concat(MDD_all,axis=1,ignore_index=True)
+sharp_all=pd.concat(sharp_all,axis=1,ignore_index=True)
+VictoryRatio_all=pd.concat(VictoryRatio_all,axis=1,ignore_index=True)
+bench_ge=pd.DataFrame(['bench',00000])
+rety_ge=pd.DataFrame(['rety',000])
+MDD_ge=pd.DataFrame(['MDD',0000])
+sharp_ge=pd.DataFrame(['sharp',000])
+VictoryRatio_ge=pd.DataFrame(['Vct',000])
+frames = [bench_ge,bench_rety_all,rety_ge,rety_all, MDD_ge,MDD_all,sharp_ge,sharp_all,VictoryRatio_ge, VictoryRatio_all]
+kk=pd.concat(frames,axis=0,ignore_index=True)
+kk.to_csv('final.csv')
+# all= pd.concat([z,a,b,c,d,e,f,g,h],axis=1,ignore_index=True)
+# all.to_csv('sharpp.csv',index=False) #header=0表示不保留列名，index=False表示不保留行索引，mode='a'表示附加方式写入，文件原有内容不会被清除
+#
 # bench_rety_all.to_csv('bench_final.csv')
 # rety_all.to_csv('rety_final.csv')
 # MDD_all.to_csv('MDD_final.csv')
