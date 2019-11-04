@@ -409,16 +409,12 @@ sharp=pd.DataFrame()
 ################################################
 m=0
 
-for m in range(0,1):
+for m in range(0,2):
     sharp = pd.DataFrame()
     rety = pd.DataFrame()
     bench_rety = pd.DataFrame()
     MDD = pd.DataFrame()
     VictoryRatio = pd.DataFrame()
-
-
-
-    m = m + 1
     for i in range(m*10,
                    # 91):
                    (m+1)*10):
@@ -428,8 +424,8 @@ for m in range(0,1):
         for k in range(0,
                        assets.shape[1]):
             # 1):
-            zhibiao=hg_y.iloc[:,i]
-            asset=assets.iloc[:,k]
+            zhibiao=hg_y.iloc[:,i].copy()
+            asset=assets.iloc[:,k].copy()
             # print(zhibiao)
             # print(asset)
             pdatas=cleanData(asset,zhibiao)
@@ -464,6 +460,24 @@ for m in range(0,1):
 # pdatas=cleanData(asset,zhibiao)
 # Strategy(pdatas)
 ####################################################
+VictoryRatio_all=[]
+sharp_all=[]
+bench_rety_all=[]
+rety_all=[]
+MDD_all=[]
+a=0
+for a in range(0,2):
+    x=pd.read_csv('bench_rety%s.csv'%a, header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+    bench_rety_all.append(x)
+    y = pd.read_csv('rety%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+    rety_all.append(y)
+    z = pd.read_csv('MDD%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+    MDD_all.append(z)
+    v = pd.read_csv('sharp%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+    sharp_all.append(v)
+    w = pd.read_csv('VictoryRatio%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+    VictoryRatio_all.append(w)
+ ########################################################
         # rety['%s' % i] = one_hg['rety']
         # VictoryRatio['%s' % i] = one_hg['VictoryRatio']
         # MDD['%s' % i] = one_hg['MDD']
@@ -484,24 +498,24 @@ for m in range(0,1):
 # print(zhibiao_result)
 
 
-z=pd.read_csv('sharp0.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-a=pd.read_csv('sharp1.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-b=pd.read_csv('sharp2.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-c=pd.read_csv('sharp3.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-d=pd.read_csv('sharp4.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-e=pd.read_csv('sharp5.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-f=pd.read_csv('sharp6.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-g=pd.read_csv('sharp7.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-h=pd.read_csv('sharp8.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# i=pd.read_csv('sharp9.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# j=pd.read_csv('sharp10.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# k=pd.read_csv('sharp11.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# l=pd.read_csv('sharp12.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-# m=pd.read_csv('sharp13.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-
-all= pd.concat([z,a,b,c,d,e,f,g,h],axis=1,ignore_index=True)
-all.to_csv('sharpp.csv',index=False) #header=0表示不保留列名，index=False表示不保留行索引，mode='a'表示附加方式写入，文件原有内容不会被清除
-
+# z=pd.read_csv('sharp0.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# a=pd.read_csv('sharp1.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# b=pd.read_csv('sharp2.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# c=pd.read_csv('sharp3.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# d=pd.read_csv('sharp4.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# e=pd.read_csv('sharp5.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# f=pd.read_csv('sharp6.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# g=pd.read_csv('sharp7.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# h=pd.read_csv('sharp8.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# # i=pd.read_csv('sharp9.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# # j=pd.read_csv('sharp10.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# # k=pd.read_csv('sharp11.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# # l=pd.read_csv('sharp12.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+# # m=pd.read_csv('sharp13.csv', header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
+#
+# all= pd.concat([z,a,b,c,d,e,f,g,h],axis=1,ignore_index=True)
+# all.to_csv('sharpp.csv',index=False) #header=0表示不保留列名，index=False表示不保留行索引，mode='a'表示附加方式写入，文件原有内容不会被清除
+#
 
 
 # b.to_csv('sharpp.csv', mode='a', index=True, header=0)
