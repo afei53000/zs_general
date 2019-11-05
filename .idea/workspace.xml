@@ -15,13 +15,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/general.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
-              <caret line="82" column="15" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
+            <state relative-caret-position="478">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sharp0.csv">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/final.csv">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -37,6 +47,7 @@
     <findStrings>
       <find>flag</find>
       <find>append</find>
+      <find>rolling</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,14 +181,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17167382" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17167382" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.31082803" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31082803" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -306,12 +316,10 @@
     <entry file="file://$PROJECT_DIR$/sharp6.csv" />
     <entry file="file://$PROJECT_DIR$/sharp5.csv" />
     <entry file="file://$PROJECT_DIR$/sharpp.csv" />
-    <entry file="file://$PROJECT_DIR$/final.csv" />
     <entry file="file://$PROJECT_DIR$/bench_rety0.csv" />
     <entry file="file://$PROJECT_DIR$/bench_rety2.csv" />
     <entry file="file://$PROJECT_DIR$/bench_rety1.csv" />
     <entry file="file://$PROJECT_DIR$/Sharp.csv" />
-    <entry file="file://$PROJECT_DIR$/sharp0.csv" />
     <entry file="file://$PROJECT_DIR$/sharp1.csv" />
     <entry file="file://$PROJECT_DIR$/sharp2.csv" />
     <entry file="file://$PROJECT_DIR$/sharp3.csv" />
@@ -320,10 +328,16 @@
     <entry file="file://$PROJECT_DIR$/zhishu.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/sharp0.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/final.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/general.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="82" column="15" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
+        <state relative-caret-position="478">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
