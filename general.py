@@ -71,7 +71,16 @@ def cleanData(asset,zb):
     return pdatas
 
 
-
+# for i in range(len(pdatas.index)):
+#     if (pd.isna(pdatas.zb[i-1])==False)&(pd.isna(pdatas.zb[i])==True):
+#         # pdatas.flag[i] = 1
+#         pdatas.zb[i]=pdatas.zb[i-1]
+#     if (pd.isna(pdatas.zb_roll[i - 1]) == False) & (pd.isna(pdatas.zb_roll[i]) == True):
+#         pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
+# pdatas=pdatas.dropna(subset=['asset'])
+# # print(pdatas)
+# pdatas=pdatas[['zb','zb_roll','asset']]
+# print(pdatas)
 
 def Strategy(pdatas):
     # pdatas = datas.copy();win_long = 12;win_short = 6;lossratio = 999;
@@ -327,7 +336,7 @@ bench_rety_all=[]
 rety_all=[]
 MDD_all=[]
 a=0
-for a in range(0,9):
+for a in range(0,2):
     x=pd.read_csv('bench_rety%s.csv'%a, header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
     bench_rety_all.append(x)
     y = pd.read_csv('rety%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引

@@ -2,72 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abef041d-86da-4ca2-bc1c-57c1a5592091" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/zhishu.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD6.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD7.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD8.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sharp.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio6.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio7.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio8.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety6.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety7.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety8.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/berra.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cl.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpi.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/final.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/general.py" beforeDir="false" afterPath="$PROJECT_DIR$/general.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gyzjz.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs300.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/huobi.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyyz.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jtf.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmi.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety6.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety7.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety8.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp10.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp11.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp12.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp13.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp6.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp7.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp8.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp9.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharpp.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/syl.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,18 +15,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/general.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="48" column="18" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+            <state relative-caret-position="603">
+              <caret line="82" column="15" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhishu.csv">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -157,10 +87,10 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -325,41 +255,11 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hs300.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33270">
-          <caret line="2218" column="17" selection-start-line="2218" selection-start-column="17" selection-end-line="2218" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hyyz.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gyzjz.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="116" selection-start-line="116" selection-end-line="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cpi.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="117" selection-start-line="117" selection-end-line="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/syl.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/hs300.csv" />
+    <entry file="file://$PROJECT_DIR$/hyyz.csv" />
+    <entry file="file://$PROJECT_DIR$/gyzjz.csv" />
+    <entry file="file://$PROJECT_DIR$/cpi.csv" />
+    <entry file="file://$PROJECT_DIR$/syl.csv" />
     <entry file="file://$PROJECT_DIR$/zhibiao.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -370,20 +270,8 @@
     <entry file="file://$PROJECT_DIR$/hg_r.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/jtf.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7050">
-          <caret line="470" column="14" selection-start-line="470" selection-start-column="14" selection-end-line="470" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/huobi.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/jtf.csv" />
+    <entry file="file://$PROJECT_DIR$/huobi.csv" />
     <entry file="file://$PROJECT_DIR$/general.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -391,25 +279,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sharp12.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp11.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp10.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/result.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="96" selection-start-line="14" selection-start-column="96" selection-end-line="14" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp13.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/sharp12.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp11.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp10.csv" />
+    <entry file="file://$PROJECT_DIR$/result.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp13.csv" />
     <entry file="file://$PROJECT_DIR$/hg_yue.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1755">
@@ -424,102 +298,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pmi.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="81" selection-start-column="81" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp9.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp4.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp8.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp7.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp6.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp5.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharpp.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/final.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bench_rety0.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bench_rety2.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bench_rety1.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sharp.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp0.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp1.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp2.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp3.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cl.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/berra.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pmi.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp9.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp4.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp8.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp7.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp6.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp5.csv" />
+    <entry file="file://$PROJECT_DIR$/sharpp.csv" />
+    <entry file="file://$PROJECT_DIR$/final.csv" />
+    <entry file="file://$PROJECT_DIR$/bench_rety0.csv" />
+    <entry file="file://$PROJECT_DIR$/bench_rety2.csv" />
+    <entry file="file://$PROJECT_DIR$/bench_rety1.csv" />
+    <entry file="file://$PROJECT_DIR$/Sharp.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp0.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp1.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp2.csv" />
+    <entry file="file://$PROJECT_DIR$/sharp3.csv" />
+    <entry file="file://$PROJECT_DIR$/cl.csv" />
+    <entry file="file://$PROJECT_DIR$/berra.csv" />
     <entry file="file://$PROJECT_DIR$/zhishu.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/general.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="48" column="18" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+        <state relative-caret-position="603">
+          <caret line="82" column="15" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
