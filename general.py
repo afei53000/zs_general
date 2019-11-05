@@ -11,49 +11,43 @@ from matplotlib import pyplot as plt
 
 
 def cleanData(asset,zb):
-
-    minus=[]
-        # pd.DataFrame()
+    minus = []
+    # pd.DataFrame()
     # print(zb)
 
     for i in range(len(zb.index)):
         if (pd.isna(zb.iloc[i]) == False):
             # pdatas.flag[i] = 1
-            k=zb.iloc[i]
+            k = zb.iloc[i]
             minus.append(k)
 
     # print(minus)
-    minus=pd.DataFrame(minus)
+    minus = pd.DataFrame(minus)
     minus = minus - minus.shift(1)
-    f=0
+    f = 0
     zb[0] = 0
-    for i in range(1,len(zb.index)):
+    for i in range(1, len(zb.index)):
         if (pd.isna(zb[i]) == False):
             # pdatas.flag[i] = 1
-            zb[i]=minus.iloc[f,0]
-            f=f+1
-    zb.index=zb.index+datetime.timedelta(days=26)#
+            zb[i] = minus.iloc[f, 0]
+            f = f + 1
+    zb.index = zb.index + datetime.timedelta(days=26)  #
 
-
-
-
-
-    pdatas=pd.concat([zb,asset],axis=1)
+    pdatas = pd.concat([zb, asset], axis=1)
     # pdatas=pd.merge(zb,asset,how='outer')
     # pdatas = zb.join( asset,how='outer')
 
-    pd.DataFrame(pdatas).columns=['zb','asset']
+    pd.DataFrame(pdatas).columns = ['zb', 'asset']
     # print(pdatas)
     pdatas = pdatas[['zb', 'asset']]
     # 空值数据处理-----月～ri
     # zb_dropna= zb.dropna()
     # print(zb_dropna)
-    for i in range(len(pdatas.index)):
+    for i in range(len(pdatas.index) - 1):
         # pdatas.zb[i] =np.nan
-        if (pd.isna(pdatas.asset[i]) == True)&(pd.isna(pdatas.zb[i])==False):
+        if (pd.isna(pdatas.zb[i]) == False) & (pd.isna(pdatas.zb[i + 1]) == True):
             # pdatas.flag[i] = 1
-            if (pd.isna(pdatas.asset[i+1]) == False):
-                pdatas.zb[i+1]=pdatas.zb[i]
+            pdatas.zb[i + 1] = pdatas.zb[i]
 
     pdatas = pdatas.dropna(subset=['asset'])
     # print(pdatas)
@@ -292,7 +286,7 @@ def performace(transactions, strategy):
     return result, result_peryear
 
 
-choice=1
+choice=-1
 zhibiao_result=pd.DataFrame()
 
 #载入数据
@@ -316,49 +310,49 @@ hg_y=pd.DataFrame(hg_y)
 sharp=pd.DataFrame()
 
 ################################################
-# m=0
+m=0
 
-# for m in range(2,9):
-#     sharp = pd.DataFrame()
-#     rety = pd.DataFrame()
-#     bench_rety = pd.DataFrame()
-#     MDD = pd.DataFrame()
-#     VictoryRatio = pd.DataFrame()
-#     for i in range(m*10,
-#                    # 91):
-#                    (m+1)*10):
-#
-#         one_hg=[]
-#
-#         for k in range(0,
-#                        assets.shape[1]):
-#             # 1):
-#             zhibiao=hg_y.iloc[:,i].copy()
-#             asset=assets.iloc[:,k].copy()
-#             # print(zhibiao)
-#             # print(asset)
-#             pdatas=cleanData(asset,zhibiao)
-#             result=Strategy(pdatas)[0]
-#             # print(result)
-#             one_hg.append(result)
-#         one_hg = pd.DataFrame(one_hg)
-#         # zhibiao_result.append(one_hg)
-#         sharp['%s'%i]=one_hg['Sharp']
-#         bench_rety['%s' % i] = one_hg['bench_rety']
-#         rety['%s' % i] = one_hg['RetYearly']
-#         MDD['%s' % i] = one_hg['MDD']
-#         VictoryRatio['%s' % i] = one_hg['WinRate']
-#
-#     VictoryRatio.to_csv('VictoryRatio%s.csv' % m)
-#
-#     sharp.to_csv('sharp%s.csv'%m)
-#     bench_rety.to_csv('bench_rety%s.csv'%m)
-#     rety.to_csv('rety%s.csv'%m)
-#     MDD.to_csv('MDD%s.csv'%m)
-#     print('%s th is caculated' % m)
-#
-#     #
-#     m=m+1
+for m in range(0,9):
+    sharp = pd.DataFrame()
+    rety = pd.DataFrame()
+    bench_rety = pd.DataFrame()
+    MDD = pd.DataFrame()
+    VictoryRatio = pd.DataFrame()
+    for i in range(m*10,
+                   # 91):
+                   (m+1)*10):
+
+        one_hg=[]
+
+        for k in range(0,
+                       assets.shape[1]):
+            # 1):
+            zhibiao=hg_y.iloc[:,i].copy()
+            asset=assets.iloc[:,k].copy()
+            # print(zhibiao)
+            # print(asset)
+            pdatas=cleanData(asset,zhibiao)
+            result=Strategy(pdatas)[0]
+            # print(result)
+            one_hg.append(result)
+        one_hg = pd.DataFrame(one_hg)
+        # zhibiao_result.append(one_hg)
+        sharp['%s'%i]=one_hg['Sharp']
+        bench_rety['%s' % i] = one_hg['bench_rety']
+        rety['%s' % i] = one_hg['RetYearly']
+        MDD['%s' % i] = one_hg['MDD']
+        VictoryRatio['%s' % i] = one_hg['WinRate']
+
+    VictoryRatio.to_csv('VictoryRatio%s.csv' % m)
+
+    sharp.to_csv('sharp%s.csv'%m)
+    bench_rety.to_csv('bench_rety%s.csv'%m)
+    rety.to_csv('rety%s.csv'%m)
+    MDD.to_csv('MDD%s.csv'%m)
+    print('%s th is caculated' % m)
+
+    #
+    m=m+1
 
 ###################################################
 
@@ -395,6 +389,6 @@ sharp_ge=pd.DataFrame(['sharp',000])
 VictoryRatio_ge=pd.DataFrame(['Vct',000])
 frames = [bench_ge,bench_rety_all,rety_ge,rety_all, MDD_ge,MDD_all,sharp_ge,sharp_all,VictoryRatio_ge, VictoryRatio_all]
 kk=pd.concat(frames,axis=0,ignore_index=True)
-kk.to_csv('final.csv')
+kk.to_csv('final_zhishu.csv')
 
 
