@@ -318,47 +318,47 @@ sharp=pd.DataFrame()
 ################################################
 # m=0
 
-for m in range(2,9):
-    sharp = pd.DataFrame()
-    rety = pd.DataFrame()
-    bench_rety = pd.DataFrame()
-    MDD = pd.DataFrame()
-    VictoryRatio = pd.DataFrame()
-    for i in range(m*10,
-                   # 91):
-                   (m+1)*10):
-
-        one_hg=[]
-
-        for k in range(0,
-                       assets.shape[1]):
-            # 1):
-            zhibiao=hg_y.iloc[:,i].copy()
-            asset=assets.iloc[:,k].copy()
-            # print(zhibiao)
-            # print(asset)
-            pdatas=cleanData(asset,zhibiao)
-            result=Strategy(pdatas)[0]
-            # print(result)
-            one_hg.append(result)
-        one_hg = pd.DataFrame(one_hg)
-        # zhibiao_result.append(one_hg)
-        sharp['%s'%i]=one_hg['Sharp']
-        bench_rety['%s' % i] = one_hg['bench_rety']
-        rety['%s' % i] = one_hg['RetYearly']
-        MDD['%s' % i] = one_hg['MDD']
-        VictoryRatio['%s' % i] = one_hg['WinRate']
-
-    VictoryRatio.to_csv('VictoryRatio%s.csv' % m)
-
-    sharp.to_csv('sharp%s.csv'%m)
-    bench_rety.to_csv('bench_rety%s.csv'%m)
-    rety.to_csv('rety%s.csv'%m)
-    MDD.to_csv('MDD%s.csv'%m)
-    print('%s th is caculated' % m)
-
-    #
-    m=m+1
+# for m in range(2,9):
+#     sharp = pd.DataFrame()
+#     rety = pd.DataFrame()
+#     bench_rety = pd.DataFrame()
+#     MDD = pd.DataFrame()
+#     VictoryRatio = pd.DataFrame()
+#     for i in range(m*10,
+#                    # 91):
+#                    (m+1)*10):
+#
+#         one_hg=[]
+#
+#         for k in range(0,
+#                        assets.shape[1]):
+#             # 1):
+#             zhibiao=hg_y.iloc[:,i].copy()
+#             asset=assets.iloc[:,k].copy()
+#             # print(zhibiao)
+#             # print(asset)
+#             pdatas=cleanData(asset,zhibiao)
+#             result=Strategy(pdatas)[0]
+#             # print(result)
+#             one_hg.append(result)
+#         one_hg = pd.DataFrame(one_hg)
+#         # zhibiao_result.append(one_hg)
+#         sharp['%s'%i]=one_hg['Sharp']
+#         bench_rety['%s' % i] = one_hg['bench_rety']
+#         rety['%s' % i] = one_hg['RetYearly']
+#         MDD['%s' % i] = one_hg['MDD']
+#         VictoryRatio['%s' % i] = one_hg['WinRate']
+#
+#     VictoryRatio.to_csv('VictoryRatio%s.csv' % m)
+#
+#     sharp.to_csv('sharp%s.csv'%m)
+#     bench_rety.to_csv('bench_rety%s.csv'%m)
+#     rety.to_csv('rety%s.csv'%m)
+#     MDD.to_csv('MDD%s.csv'%m)
+#     print('%s th is caculated' % m)
+#
+#     #
+#     m=m+1
 
 ###################################################
 
@@ -369,7 +369,7 @@ bench_rety_all=[]
 rety_all=[]
 MDD_all=[]
 a=0
-for a in range(2,9):
+for a in range(0,9):
     x=pd.read_csv('bench_rety%s.csv'%a, header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
     bench_rety_all.append(x)
     y = pd.read_csv('rety%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
