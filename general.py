@@ -12,6 +12,7 @@ from matplotlib import pyplot as plt
 
 def cleanData(asset,zb):
     minus = []
+    
     # pd.DataFrame()
     # print(zb)
 
