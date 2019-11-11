@@ -46,11 +46,12 @@ def cleanData(asset,zb):
     # print(zb_dropna)
     for i in range(len(pdatas.index) - 1):
         # pdatas.zb[i] =np.nan
-        if (pd.isna(pdatas.zb[i]) == False) & (pd.isna(pdatas.zb[i + 1]) == True):
+        if (pd.isna(pdatas.zb[i]) == False) & (pd.isna(pdatas.asset[i]) == True):
             # pdatas.flag[i] = 1
-            pdatas.zb[i + 1] = pdatas.zb[i]
+            pdatas.zb[i -1] = pdatas.zb[i]
+            pdatas.zb[i]=np.nan
 
-    pdatas = pdatas.dropna(subset=['asset'])
+    pdatas = pdatas.dropna(subset=['zb'])
     # print(pdatas)
 
     # print(pdatas)
@@ -209,7 +210,7 @@ def Strategy(pdatas):
 
 def performace(transactions, strategy):
 
-    N = 250
+    N = 12
 
     # 年化收益率
     rety = strategy.nav[strategy.shape[0] - 1] ** (N / strategy.shape[0]) - 1
@@ -313,7 +314,7 @@ sharp=pd.DataFrame()
 ################################################
 m=0
 
-for m in range(0,9):
+for m in range(5,9):
     sharp = pd.DataFrame()
     rety = pd.DataFrame()
     bench_rety = pd.DataFrame()
@@ -364,7 +365,7 @@ bench_rety_all=[]
 rety_all=[]
 MDD_all=[]
 a=0
-for a in range(0,9):
+for a in range(5,9):
     x=pd.read_csv('bench_rety%s.csv'%a, header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
     bench_rety_all.append(x)
     y = pd.read_csv('rety%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
