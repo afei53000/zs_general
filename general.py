@@ -288,7 +288,7 @@ def performace(transactions, strategy):
     return result, result_peryear
 
 
-choice=-1
+choice=1
 zhibiao_result=pd.DataFrame()
 
 #载入数据
@@ -314,7 +314,7 @@ sharp=pd.DataFrame()
 ################################################
 m=0
 
-for m in range(5,9):
+for m in range(0,9):
     sharp = pd.DataFrame()
     rety = pd.DataFrame()
     bench_rety = pd.DataFrame()
@@ -365,7 +365,7 @@ bench_rety_all=[]
 rety_all=[]
 MDD_all=[]
 a=0
-for a in range(5,9):
+for a in range(0,9):
     x=pd.read_csv('bench_rety%s.csv'%a, header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
     bench_rety_all.append(x)
     y = pd.read_csv('rety%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
