@@ -1,45 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="abef041d-86da-4ca2-bc1c-57c1a5592091" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/MDD0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD5.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MDD6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD6.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio5.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VictoryRatio6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio6.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety5.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety6.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general.py" beforeDir="false" afterPath="$PROJECT_DIR$/general.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result.csv" beforeDir="false" afterPath="$PROJECT_DIR$/result.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rety0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rety1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rety2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rety3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rety4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rety5.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rety6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rety6.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sharp0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sharp1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sharp2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sharp3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sharp4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sharp5.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sharp6.csv" afterDir="false" />
-    </list>
+    <list default="true" id="abef041d-86da-4ca2-bc1c-57c1a5592091" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
