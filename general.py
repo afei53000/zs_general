@@ -11,8 +11,7 @@ from matplotlib import pyplot as plt
 
 
 def cleanData(asset,zb):
-    # k = zb.rolling(6, min_periods=6, axis=0).mean()
-    # zb = k
+
     minus = []
     
     # pd.DataFrame()
@@ -26,6 +25,10 @@ def cleanData(asset,zb):
 
     # print(minus)
     minus = pd.DataFrame(minus)
+    # print(minus)
+    kk = minus.rolling(2, min_periods=2, axis=0).mean()
+    minus= kk
+    # print(minus)
     minus = minus - minus.shift(1)
     f = 0
     zb[0] = 0
