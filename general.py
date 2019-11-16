@@ -215,7 +215,7 @@ def Strategy(pdatas):
 
 def performace(transactions, strategy):
 
-    N = 12
+    N = 3
 
     # 年化收益率
     rety = strategy.nav[strategy.shape[0] - 1] ** (N / strategy.shape[0]) - 1
@@ -304,7 +304,7 @@ assets.set_index(assets['date'],inplace=True)
 del assets['date']
 
 
-hg_y=pd.read_csv('hg_yue.csv')
+hg_y=pd.read_csv('hg_ji.csv')
 hg_y['date']=pd.to_datetime(hg_y['date'])
 hg_y.set_index(hg_y['date'],inplace=True)
 del hg_y['date']
@@ -319,7 +319,7 @@ sharp=pd.DataFrame()
 ################################################
 m=0
 
-for m in range(0,9):
+for m in range(2,3):
     sharp = pd.DataFrame()
     rety = pd.DataFrame()
     bench_rety = pd.DataFrame()
@@ -327,7 +327,7 @@ for m in range(0,9):
     VictoryRatio = pd.DataFrame()
     for i in range(m*10,
                    # 91):
-                   (m+1)*10):
+                   min((m+1)*10,24)):
 
         one_hg=[]
 
@@ -370,7 +370,7 @@ bench_rety_all=[]
 rety_all=[]
 MDD_all=[]
 a=0
-for a in range(0,9):
+for a in range(2,3):
     x=pd.read_csv('bench_rety%s.csv'%a, header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
     bench_rety_all.append(x)
     y = pd.read_csv('rety%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
