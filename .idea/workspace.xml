@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abef041d-86da-4ca2-bc1c-57c1a5592091" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/hg_ji.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD0.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MDD1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD1.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MDD2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MDD2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio0.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/VictoryRatio1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio1.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/VictoryRatio2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/VictoryRatio2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bench_rety2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bench_rety2.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final_zhishu.csv" beforeDir="false" afterPath="$PROJECT_DIR$/final_zhishu.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/general.py" beforeDir="false" afterPath="$PROJECT_DIR$/general.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hg_r.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hg_y.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hg_yue.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/result.csv" beforeDir="false" afterPath="$PROJECT_DIR$/result.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rety0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rety0.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rety1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rety1.csv" afterDir="false" />
@@ -35,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/general.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="329" column="34" selection-start-line="329" selection-start-column="34" selection-end-line="329" selection-end-column="34" />
+            <state relative-caret-position="217">
+              <caret line="372" column="16" selection-start-line="372" selection-start-column="16" selection-end-line="372" selection-end-column="16" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -223,13 +217,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="873" height="617" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21179302" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21179302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31047618" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31047618" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -404,8 +399,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/general.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="329" column="34" selection-start-line="329" selection-start-column="34" selection-end-line="329" selection-end-column="34" />
+        <state relative-caret-position="217">
+          <caret line="372" column="16" selection-start-line="372" selection-start-column="16" selection-end-line="372" selection-end-column="16" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
