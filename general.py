@@ -245,28 +245,28 @@ def performace(transactions, strategy):
     result_peryear = result_peryear.T
 
     # 作图
-    # xtick = np.round(np.linspace(0, strategy.shape[0] - 1, 7), 0).astype(int)
-    # xticklabel = strategy.index[xtick].strftime("%y %b")
-    #
-    # plt.figure(figsize=(9, 4))
-    # ax1 = plt.axes()
-    # plt.plot(np.arange(strategy.shape[0]), strategy.benchmark, 'black', label='benchmark', linewidth=2)
-    # plt.plot(np.arange(strategy.shape[0]), strategy.nav, 'red', label='nav', linewidth=2)
-    # # plt.plot(np.arange(strategy.shape[0]), strategy.nav / strategy.benchmark, 'orange', label='RS', linewidth=2)
-    # # plt.plot(np.arange(strategy.shape[0]), 1 , 'grey', label='1', linewidth=1)
-    #
-    # plt.plot(np.arange(strategy.shape[0]), strategy.zb / 50000 + 1, 'orange', label='zb', linewidth=2)
-    #
-    # # plt.plot(np.arange(strategy.shape[0]), strategy.jtf_roll/50000+1 , 'blue', label='jtf_roll', linewidth=2)
-    # lim = [1] * 120
-    # plt.plot(lim, "r--")
-    #
-    # plt.legend()
-    #
-    # ax1.set_xticks(xtick)
-    # ax1.set_xticklabels(xticklabel)
+    xtick = np.round(np.linspace(0, strategy.shape[0] - 1, 7), 0).astype(int)
+    xticklabel = strategy.index[xtick].strftime("%y %b")
+
+    plt.figure(figsize=(9, 4))
+    ax1 = plt.axes()
+    plt.plot(np.arange(strategy.shape[0]), strategy.benchmark, 'black', label='benchmark', linewidth=2)
+    plt.plot(np.arange(strategy.shape[0]), strategy.nav, 'red', label='nav', linewidth=2)
+    # plt.plot(np.arange(strategy.shape[0]), strategy.nav / strategy.benchmark, 'orange', label='RS', linewidth=2)
+    # plt.plot(np.arange(strategy.shape[0]), 1 , 'grey', label='1', linewidth=1)
+
+    plt.plot(np.arange(strategy.shape[0]), strategy.zb / 50000 + 1, 'orange', label='zb', linewidth=2)
+
+    # plt.plot(np.arange(strategy.shape[0]), strategy.jtf_roll/50000+1 , 'blue', label='jtf_roll', linewidth=2)
+    lim = [1] * 120
+    plt.plot(lim, "r--")
+
+    plt.legend()
+
+    ax1.set_xticks(xtick)
+    ax1.set_xticklabels(xticklabel)
     # plt.savefig("/Users/feitongliu/Desktop/数据/jtf_momentum.png", dpi=100)
-    # plt.show()
+    plt.show()
 
     maxloss = min(transactions.pricesell / transactions.pricebuy - 1)
 
@@ -304,14 +304,14 @@ choice=-1
 zhibiao_result=pd.DataFrame()
 
 #载入数据
-assets=pd.read_csv('berra.csv')
+assets=pd.read_csv('zhishu.csv')
 assets=assets.copy()
 assets['date']=pd.to_datetime(assets['date'])
 assets.set_index(assets['date'],inplace=True)
 del assets['date']
 
 
-hg_y=pd.read_csv('hg_yue.csv')
+hg_y=pd.read_csv('hg_ji.csv')
 hg_y['date']=pd.to_datetime(hg_y['date'])
 hg_y.set_index(hg_y['date'],inplace=True)
 del hg_y['date']
@@ -324,10 +324,10 @@ hg_y=pd.DataFrame(hg_y)
 # for i in range(0,hg_y.shape[1]-1):
 #     for k in range(0,assets.shape[1]-1):
 sharp=pd.DataFrame()
-# zhibiao=hg_y['gdzc_xz']
-# asset=assets['beta']
-zhibiao=hg_y.iloc[:,1]
-asset=assets.iloc[:,8]
+zhibiao=hg_y['gdp_zl']
+asset=assets['nh_js']
+# zhibiao=hg_y.iloc[:,1]
+# asset=assets.iloc[:,8]
 print(zhibiao)
 print(asset)
 pdatas=cleanData(asset,zhibiao)
