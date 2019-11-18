@@ -63,16 +63,6 @@ def cleanData(asset,zb):
     return pdatas
 
 
-# for i in range(len(pdatas.index)):
-#     if (pd.isna(pdatas.zb[i-1])==False)&(pd.isna(pdatas.zb[i])==True):
-#         # pdatas.flag[i] = 1
-#         pdatas.zb[i]=pdatas.zb[i-1]
-#     if (pd.isna(pdatas.zb_roll[i - 1]) == False) & (pd.isna(pdatas.zb_roll[i]) == True):
-#         pdatas.zb_roll[i]=pdatas.zb_roll[i-1]
-# pdatas=pdatas.dropna(subset=['asset'])
-# # print(pdatas)
-# pdatas=pdatas[['zb','zb_roll','asset']]
-# print(pdatas)
 
 def Strategy(pdatas):
     # pdatas = datas.copy();win_long = 12;win_short = 6;lossratio = 999;
@@ -145,50 +135,14 @@ def Strategy(pdatas):
                 priceout.append([date_out, price_out])
 
 
-        # if (pdatas.jtf[i] > 0):
-        #     # &(pdatas.rolling[i]>0)
-        #     pdatas.flag[i] = -1
-        #     pdatas.position[i + 1] = 0
-        #     # pdatas 是一个Dataframe 有5列 1：时间 2：宏观 3：价格CLOSE 4：position 5:flag
-        #
-        #     date_in = pdatas.index[i]
-        #     price_in = pdatas.momentum[i]
-        #     pricein.append([date_in, price_in])
-    # pricein/priceout  是一个有2列的列表 1：时间 2：买入/卖出价格
-
-    # 当前持仓，下跌超出止损率，止损
-    # elif (pdatas.position[i] == 1)& (((pdatas.CLOSE[i] / price_in )- 1 )< -lossratio):
-    #             pdatas.loc[i, 'flag'] = -1
-    #             pdatas.loc[i + 1, 'position'] = 0
-    #
-    #             priceout.append([pdatas.DateTime[i], pdatas.loc[i, 'CLOSE']])
-    #
-    #         # 当前持仓，死叉，平仓
-    # elif (pdatas.sma[i - 1] > pdatas.lma[i - 1]) & (pdatas.sma[i] < pdatas.lma[i]) & (pdatas.position[i] == 1):
-    #             pdatas.loc[i, 'flag'] = -1
-    #             pdatas.loc[i + 1, 'position'] = 0
-    #
-                # priceout.append([pdatas.DateTime[i], pdatas.loc[i, 'CLOSE']])
-    #
-    #         # 其他情况，保持之前仓位不变
-    # else:
-    #             pdatas.loc[i + 1, 'position'] = pdatas.loc[i, 'position']
 
     p1 = pd.DataFrame(pricein, columns=['datebuy', 'pricebuy'])
     p2 = pd.DataFrame(priceout, columns=['datesell', 'pricesell'])
     # p1/p2  是一个有2列的Dataframe  1：时间datebuy 2：买入/卖出价格pricebuy
 
     transactions = pd.concat([p1, p2], axis=1)
-    # print( 'the transaction is :')
-    # print(transactions)
-    # transactions  是一个有2列的Dataframe  1：时间 2：买入和卖出价格
-
-    # pdatas = pdatas.loc[max(0, win_long):, :].reset_index(drop=True)
     pdatas['ret'] = pdatas.asset.pct_change(1).fillna(0)
 
-    # print(pdatas.iloc[:,1])#momentum
-    # print(pdatas.iloc[:,1].pct_change(1).fillna(0))
-    # print(pdatas.position)
     pdatas['nav'] = (1 + pdatas.ret * pdatas.position).cumprod()
     pdatas['benchmark'] = pdatas.asset / pdatas.asset[0]  # 错了
     # print(pdatas['benchmark'])
@@ -230,11 +184,6 @@ def performace(transactions, strategy):
     DD = 1 - strategy.nav / strategy.nav.cummax()
     MDD = max(DD)
 
-    # 策略逐年表现??????
-    # strategy['date']=strategy.index.copy()
-    # strategy['date']=pd.DataFrame(strategy['date']).to_datetime()
-    #
-    # # strategy['year'] = strategy.DateTime.apply(lambda x:x[:4])
     nav_peryear = strategy.nav.groupby(strategy.year).last() / strategy.nav.groupby(strategy.year).first() - 1
     benchmark_peryear = strategy.benchmark.groupby(strategy.year).last() / strategy.benchmark.groupby(
         strategy.year).first() - 1
@@ -244,40 +193,10 @@ def performace(transactions, strategy):
     result_peryear.columns = ['strategy_ret', 'bench_ret', 'excess_ret']
     result_peryear = result_peryear.T
 
-    # 作图
-    # xtick = np.round(np.linspace(0, strategy.shape[0] - 1, 7), 0).astype(int)
-    # xticklabel = strategy.index[xtick].strftime("%y %b")
-    #
-    # plt.figure(figsize=(9, 4))
-    # ax1 = plt.axes()
-    # plt.plot(np.arange(strategy.shape[0]), strategy.benchmark, 'black', label='benchmark', linewidth=2)
-    # plt.plot(np.arange(strategy.shape[0]), strategy.nav, 'red', label='nav', linewidth=2)
-    # # plt.plot(np.arange(strategy.shape[0]), strategy.nav / strategy.benchmark, 'orange', label='RS', linewidth=2)
-    # # plt.plot(np.arange(strategy.shape[0]), 1 , 'grey', label='1', linewidth=1)
-    #
-    # plt.plot(np.arange(strategy.shape[0]), strategy.zb / 50000 + 1, 'orange', label='zb', linewidth=2)
-    #
-    # # plt.plot(np.arange(strategy.shape[0]), strategy.jtf_roll/50000+1 , 'blue', label='jtf_roll', linewidth=2)
-    # lim = [1] * 120
-    # plt.plot(lim, "r--")
-    #
-    # plt.legend()
-    #
-    # ax1.set_xticks(xtick)
-    # ax1.set_xticklabels(xticklabel)
-    # plt.savefig("/Users/feitongliu/Desktop/数据/jtf_momentum.png", dpi=100)
-    # plt.show()
+
 
     maxloss = min(transactions.pricesell / transactions.pricebuy - 1)
 
-    # print('------------------------------')
-    # print('夏普比为:', round(Sharp, 2))
-    # print('年化收益率为:{}%'.format(round(rety * 100, 2)))
-    # print('benchmark年化收益率为:{}%'.format(round(bench_rety * 100, 2)))
-    # print('胜率为：{}%'.format(round(VictoryRatio * 100, 2)))
-    # print('最大回撤率为：{}%'.format(round(MDD * 100, 2)))
-    # # print('单次最大亏损为:{}%'.format(round(-maxloss * 100, 2)))
-    # print('月均交易次数为：{}(买卖合计)'.format(round(strategy.flag.abs().sum() / strategy.shape[0] * 20, 2)))
 
     result = {'Sharp': Sharp,
               'RetYearly': rety,
@@ -317,49 +236,49 @@ hg_y=pd.DataFrame(hg_y)
 sharp=pd.DataFrame()
 
 ################################################
-# m=0
-#
-# for m in range(0,3):
-#     sharp = pd.DataFrame()
-#     rety = pd.DataFrame()
-#     bench_rety = pd.DataFrame()
-#     MDD = pd.DataFrame()
-#     VictoryRatio = pd.DataFrame()
-#     for i in range(m*10,
-#                    # 91):
-#                    min((m+1)*10,24)):
-#
-#         one_hg=[]
-#
-#         for k in range(0,
-#                        assets.shape[1]):
-#             # 1):
-#             zhibiao=hg_y.iloc[:,i].copy()
-#             asset=assets.iloc[:,k].copy()
-#             # print(zhibiao)
-#             # print(asset)
-#             pdatas=cleanData(asset,zhibiao)
-#             result=Strategy(pdatas)[0]
-#             # print(result)
-#             one_hg.append(result)
-#         one_hg = pd.DataFrame(one_hg)
-#         # zhibiao_result.append(one_hg)
-#         sharp['%s'%i]=one_hg['Sharp']
-#         bench_rety['%s' % i] = one_hg['bench_rety']
-#         rety['%s' % i] = one_hg['RetYearly']
-#         MDD['%s' % i] = one_hg['MDD']
-#         VictoryRatio['%s' % i] = one_hg['WinRate']
-#
-#     VictoryRatio.to_csv('VictoryRatio%s.csv' % m)
-#
-#     sharp.to_csv('sharp%s.csv'%m)
-#     bench_rety.to_csv('bench_rety%s.csv'%m)
-#     rety.to_csv('rety%s.csv'%m)
-#     MDD.to_csv('MDD%s.csv'%m)
-#     print('%s th is caculated' % m)
-#
-#     #
-#     m=m+1
+m=0
+
+for m in range(0,3):
+    sharp = pd.DataFrame()
+    rety = pd.DataFrame()
+    bench_rety = pd.DataFrame()
+    MDD = pd.DataFrame()
+    VictoryRatio = pd.DataFrame()
+    for i in range(m*10,
+                   # 91):
+                   min((m+1)*10,24)):
+
+        one_hg=[]
+
+        for k in range(0,
+                       assets.shape[1]):
+            # 1):
+            zhibiao=hg_y.iloc[:,i].copy()
+            asset=assets.iloc[:,k].copy()
+            # print(zhibiao)
+            # print(asset)
+            pdatas=cleanData(asset,zhibiao)
+            result=Strategy(pdatas)[0]
+            # print(result)
+            one_hg.append(result)
+        one_hg = pd.DataFrame(one_hg)
+        # zhibiao_result.append(one_hg)
+        sharp['%s'%i]=one_hg['Sharp']
+        bench_rety['%s' % i] = one_hg['bench_rety']
+        rety['%s' % i] = one_hg['RetYearly']
+        MDD['%s' % i] = one_hg['MDD']
+        VictoryRatio['%s' % i] = one_hg['WinRate']
+
+    VictoryRatio.to_csv('VictoryRatio%s.csv' % m)
+
+    sharp.to_csv('sharp%s.csv'%m)
+    bench_rety.to_csv('bench_rety%s.csv'%m)
+    rety.to_csv('rety%s.csv'%m)
+    MDD.to_csv('MDD%s.csv'%m)
+    print('%s th is caculated' % m)
+
+    #
+    m=m+1
 
 ###################################################
 
