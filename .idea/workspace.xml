@@ -2,8 +2,56 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abef041d-86da-4ca2-bc1c-57c1a5592091" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD7.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDD8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio7.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VictoryRatio8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bench_rety0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bench_rety1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bench_rety2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bench_rety3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bench_rety4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bench_rety5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bench_rety6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bench_rety7.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bench_rety8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/final.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_zhishu.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/general.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/general.py" beforeDir="false" afterPath="$PROJECT_DIR$/general.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rety0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rety1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rety2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rety3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rety4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rety5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rety6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rety7.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rety8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharp0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharp1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharp2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharp3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharp4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharp5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharp6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharp7.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharp8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhibiao.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +61,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/general.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1635">
-              <caret line="109" column="16" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
+            <state relative-caret-position="-1299">
+              <caret line="114" column="33" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="33" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -25,18 +73,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sharp0.csv">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zhishu.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            <state>
+              <caret column="19" selection-start-column="15" selection-end-column="19" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sharp1.csv">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -190,14 +233,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="873" height="617" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22623345" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22623345" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31047618" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3295238" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31047618" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -280,13 +322,6 @@
     <entry file="file://$PROJECT_DIR$/gyzjz.csv" />
     <entry file="file://$PROJECT_DIR$/cpi.csv" />
     <entry file="file://$PROJECT_DIR$/syl.csv" />
-    <entry file="file://$PROJECT_DIR$/zhibiao.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hg_r.csv" />
     <entry file="file://$PROJECT_DIR$/jtf.csv" />
     <entry file="file://$PROJECT_DIR$/huobi.csv" />
@@ -320,13 +355,6 @@
     <entry file="file://$PROJECT_DIR$/sharp3.csv" />
     <entry file="file://$PROJECT_DIR$/cl.csv" />
     <entry file="file://$PROJECT_DIR$/berra.csv" />
-    <entry file="file://$PROJECT_DIR$/zhishu.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-start-column="15" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/final.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -358,11 +386,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/general.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1635">
-          <caret line="109" column="16" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
+        <state relative-caret-position="-1299">
+          <caret line="114" column="33" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="33" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhibiao.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhishu.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="15" selection-end-column="19" />
         </state>
       </provider>
     </entry>
