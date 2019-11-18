@@ -216,13 +216,14 @@ def Strategy(pdatas):
 def performace(transactions, strategy):
 
     N = 3
+    print(strategy)
 
     # 年化收益率
     rety = strategy.nav[strategy.shape[0] - 1] ** (N / strategy.shape[0]) - 1
     bench_rety = strategy.benchmark[strategy.shape[0] - 1] ** (N / strategy.shape[0]) - 1
 
     # 夏普比
-    Sharp = ((strategy.ret * strategy.position).mean()*N-0.026 )/( (strategy.ret * strategy.position).std() * np.sqrt(N))
+    Sharp = ((strategy.ret * strategy.position).mean() )/( (strategy.ret * strategy.position).std() * np.sqrt(N))
 
     # 胜率
     VictoryRatio = ((transactions.pricesell - transactions.pricebuy) > 0).mean()
@@ -243,7 +244,6 @@ def performace(transactions, strategy):
     result_peryear = pd.concat([nav_peryear, benchmark_peryear, excess_ret], axis=1)
     result_peryear.columns = ['strategy_ret', 'bench_ret', 'excess_ret']
     result_peryear = result_peryear.T
-
     # 作图
     xtick = np.round(np.linspace(0, strategy.shape[0] - 1, 7), 0).astype(int)
     xticklabel = strategy.index[xtick].strftime("%y %b")
@@ -265,19 +265,19 @@ def performace(transactions, strategy):
 
     ax1.set_xticks(xtick)
     ax1.set_xticklabels(xticklabel)
-    # plt.savefig("/Users/feitongliu/Desktop/数据/jtf_momentum.png", dpi=100)
+    plt.savefig("/Users/feitongliu/Desktop/数据/jtf_momentum.png", dpi=100)
     plt.show()
 
     maxloss = min(transactions.pricesell / transactions.pricebuy - 1)
 
-    # print('------------------------------')
-    # print('夏普比为:', round(Sharp, 2))
-    # print('年化收益率为:{}%'.format(round(rety * 100, 2)))
-    # print('benchmark年化收益率为:{}%'.format(round(bench_rety * 100, 2)))
-    # print('胜率为：{}%'.format(round(VictoryRatio * 100, 2)))
-    # print('最大回撤率为：{}%'.format(round(MDD * 100, 2)))
-    # # print('单次最大亏损为:{}%'.format(round(-maxloss * 100, 2)))
-    # print('月均交易次数为：{}(买卖合计)'.format(round(strategy.flag.abs().sum() / strategy.shape[0] * 20, 2)))
+    print('------------------------------')
+    print('夏普比为:', round(Sharp, 2))
+    print('年化收益率为:{}%'.format(round(rety * 100, 2)))
+    print('benchmark年化收益率为:{}%'.format(round(bench_rety * 100, 2)))
+    print('胜率为：{}%'.format(round(VictoryRatio * 100, 2)))
+    print('最大回撤率为：{}%'.format(round(MDD * 100, 2)))
+    # print('单次最大亏损为:{}%'.format(round(-maxloss * 100, 2)))
+    print('月均交易次数为：{}(买卖合计)'.format(round(strategy.flag.abs().sum() / strategy.shape[0] * 20, 2)))
 
     result = {'Sharp': Sharp,
               'RetYearly': rety,
