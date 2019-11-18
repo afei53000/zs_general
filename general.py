@@ -112,7 +112,7 @@ def Strategy(pdatas):
 
 def performace(transactions, strategy):
 
-    N = 3
+    N = 3# 季度宏观指标对应3 ；；月度宏观指标对应12
     print(strategy)
     print(strategy.nav)
 
