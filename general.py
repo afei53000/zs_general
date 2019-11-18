@@ -217,6 +217,7 @@ def performace(transactions, strategy):
 
     N = 3
     print(strategy)
+    print(strategy.nav)
 
     # 年化收益率
     rety = strategy.nav[strategy.shape[0] - 1] ** (N / strategy.shape[0]) - 1
@@ -255,11 +256,11 @@ def performace(transactions, strategy):
     # plt.plot(np.arange(strategy.shape[0]), strategy.nav / strategy.benchmark, 'orange', label='RS', linewidth=2)
     # plt.plot(np.arange(strategy.shape[0]), 1 , 'grey', label='1', linewidth=1)
 
-    plt.plot(np.arange(strategy.shape[0]), strategy.zb / 50000 + 1, 'orange', label='zb', linewidth=2)
+    plt.plot(np.arange(strategy.shape[0]), strategy.zb/10 , 'orange', label='zb', linewidth=2)
 
     # plt.plot(np.arange(strategy.shape[0]), strategy.jtf_roll/50000+1 , 'blue', label='jtf_roll', linewidth=2)
-    lim = [1] * 120
-    plt.plot(lim, "r--")
+    # lim = [1] * 120
+    # plt.plot(lim, "r--")
 
     plt.legend()
 
@@ -324,8 +325,8 @@ hg_y=pd.DataFrame(hg_y)
 # for i in range(0,hg_y.shape[1]-1):
 #     for k in range(0,assets.shape[1]-1):
 sharp=pd.DataFrame()
-zhibiao=hg_y['gdp_zl']
-asset=assets['nh_js']
+zhibiao=hg_y['gdp_xx']
+asset=assets['hs300']
 # zhibiao=hg_y.iloc[:,1]
 # asset=assets.iloc[:,8]
 print(zhibiao)
