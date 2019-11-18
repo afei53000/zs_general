@@ -293,18 +293,25 @@ def performace(transactions, strategy):
     return result, result_peryear
 
 
+
+
+################################################
+
+###################################################
+
+####################################################
 choice=-1
 zhibiao_result=pd.DataFrame()
 
 #载入数据
-assets=pd.read_csv('zhishu.csv')
+assets=pd.read_csv('berra.csv')
 assets=assets.copy()
 assets['date']=pd.to_datetime(assets['date'])
 assets.set_index(assets['date'],inplace=True)
 del assets['date']
 
 
-hg_y=pd.read_csv('hg_ji.csv')
+hg_y=pd.read_csv('hg_yue.csv')
 hg_y['date']=pd.to_datetime(hg_y['date'])
 hg_y.set_index(hg_y['date'],inplace=True)
 del hg_y['date']
@@ -314,88 +321,18 @@ hg_y=pd.DataFrame(hg_y)
 # print(hg_y.iloc[:,1])
 # print(assets.iloc[:,1])
 
+# for i in range(0,hg_y.shape[1]-1):
+#     for k in range(0,assets.shape[1]-1):
 sharp=pd.DataFrame()
-
-################################################
-# m=0
-#
-# for m in range(0,3):
-#     sharp = pd.DataFrame()
-#     rety = pd.DataFrame()
-#     bench_rety = pd.DataFrame()
-#     MDD = pd.DataFrame()
-#     VictoryRatio = pd.DataFrame()
-#     for i in range(m*10,
-#                    # 91):
-#                    min((m+1)*10,24)):
-#
-#         one_hg=[]
-#
-#         for k in range(0,
-#                        assets.shape[1]):
-#             # 1):
-#             zhibiao=hg_y.iloc[:,i].copy()
-#             asset=assets.iloc[:,k].copy()
-#             # print(zhibiao)
-#             # print(asset)
-#             pdatas=cleanData(asset,zhibiao)
-#             result=Strategy(pdatas)[0]
-#             # print(result)
-#             one_hg.append(result)
-#         one_hg = pd.DataFrame(one_hg)
-#         # zhibiao_result.append(one_hg)
-#         sharp['%s'%i]=one_hg['Sharp']
-#         bench_rety['%s' % i] = one_hg['bench_rety']
-#         rety['%s' % i] = one_hg['RetYearly']
-#         MDD['%s' % i] = one_hg['MDD']
-#         VictoryRatio['%s' % i] = one_hg['WinRate']
-#
-#     VictoryRatio.to_csv('VictoryRatio%s.csv' % m)
-#
-#     sharp.to_csv('sharp%s.csv'%m)
-#     bench_rety.to_csv('bench_rety%s.csv'%m)
-#     rety.to_csv('rety%s.csv'%m)
-#     MDD.to_csv('MDD%s.csv'%m)
-#     print('%s th is caculated' % m)
-#
-#     #
-#     m=m+1
-
-###################################################
-
-####################################################
-VictoryRatio_all=[]
-sharp_all=[]
-bench_rety_all=[]
-rety_all=[]
-MDD_all=[]
-a=0
-for a in range(0,3):
-    x=pd.read_csv('bench_rety%s.csv'%a, header=None)#header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-    bench_rety_all.append(x)
-    y = pd.read_csv('rety%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-    rety_all.append(y)
-    z = pd.read_csv('MDD%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-    MDD_all.append(z)
-    v = pd.read_csv('sharp%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-    sharp_all.append(v)
-    w = pd.read_csv('VictoryRatio%s.csv' % a, header=None)  # header=None表示原始文件数据没有列索引，这样的话read_csv会自动加上列索引
-    VictoryRatio_all.append(w)
-
-# print(bench_rety_all)
-bench_rety_all=pd.concat(bench_rety_all,axis=1,ignore_index=True)
-# print(bench_rety_all)
-rety_all=pd.concat(rety_all,axis=1,ignore_index=True)
-MDD_all=pd.concat(MDD_all,axis=1,ignore_index=True)
-sharp_all=pd.concat(sharp_all,axis=1,ignore_index=True)
-VictoryRatio_all=pd.concat(VictoryRatio_all,axis=1,ignore_index=True)
-bench_ge=pd.DataFrame(['bench',00000])
-rety_ge=pd.DataFrame(['rety',000])
-MDD_ge=pd.DataFrame(['MDD',0000])
-sharp_ge=pd.DataFrame(['sharp',000])
-VictoryRatio_ge=pd.DataFrame(['Vct',000])
-frames = [bench_ge,bench_rety_all,rety_ge,rety_all, MDD_ge,MDD_all,sharp_ge,sharp_all,VictoryRatio_ge, VictoryRatio_all]
-kk=pd.concat(frames,axis=0,ignore_index=True)
-kk.to_csv('final_zhishu.csv')
+# zhibiao=hg_y['gdzc_xz']
+# asset=assets['beta']
+zhibiao=hg_y.iloc[:,1]
+asset=assets.iloc[:,8]
+print(zhibiao)
+print(asset)
+pdatas=cleanData(asset,zhibiao)
+result=Strategy(pdatas)[0]
+# print(result)
+print(result)
 
 
